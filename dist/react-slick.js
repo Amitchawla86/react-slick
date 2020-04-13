@@ -174,6 +174,7 @@
         );
 
         function _typeof(obj) {
+          "@babel/helpers - typeof";
           if (
             typeof Symbol === "function" &&
             typeof Symbol.iterator === "symbol"
@@ -228,7 +229,7 @@
           for (var i = 1; i < arguments.length; i++) {
             var source = arguments[i] != null ? arguments[i] : {};
             if (i % 2) {
-              ownKeys(source, true).forEach(function(key) {
+              ownKeys(Object(source), true).forEach(function(key) {
                 _defineProperty(target, key, source[key]);
               });
             } else if (Object.getOwnPropertyDescriptors) {
@@ -237,7 +238,7 @@
                 Object.getOwnPropertyDescriptors(source)
               );
             } else {
-              ownKeys(source).forEach(function(key) {
+              ownKeys(Object(source)).forEach(function(key) {
                 Object.defineProperty(
                   target,
                   key,
@@ -271,34 +272,6 @@
           return Constructor;
         }
 
-        function _possibleConstructorReturn(self, call) {
-          if (
-            call &&
-            (_typeof(call) === "object" || typeof call === "function")
-          ) {
-            return call;
-          }
-          return _assertThisInitialized(self);
-        }
-
-        function _getPrototypeOf(o) {
-          _getPrototypeOf = Object.setPrototypeOf
-            ? Object.getPrototypeOf
-            : function _getPrototypeOf(o) {
-                return o.__proto__ || Object.getPrototypeOf(o);
-              };
-          return _getPrototypeOf(o);
-        }
-
-        function _assertThisInitialized(self) {
-          if (self === void 0) {
-            throw new ReferenceError(
-              "this hasn't been initialised - super() hasn't been called"
-            );
-          }
-          return self;
-        }
-
         function _inherits(subClass, superClass) {
           if (typeof superClass !== "function" && superClass !== null) {
             throw new TypeError(
@@ -328,6 +301,63 @@
           return _setPrototypeOf(o, p);
         }
 
+        function _createSuper(Derived) {
+          return function() {
+            var Super = _getPrototypeOf(Derived),
+              result;
+            if (_isNativeReflectConstruct()) {
+              var NewTarget = _getPrototypeOf(this).constructor;
+              result = Reflect.construct(Super, arguments, NewTarget);
+            } else {
+              result = Super.apply(this, arguments);
+            }
+            return _possibleConstructorReturn(this, result);
+          };
+        }
+
+        function _possibleConstructorReturn(self, call) {
+          if (
+            call &&
+            (_typeof(call) === "object" || typeof call === "function")
+          ) {
+            return call;
+          }
+          return _assertThisInitialized(self);
+        }
+
+        function _assertThisInitialized(self) {
+          if (self === void 0) {
+            throw new ReferenceError(
+              "this hasn't been initialised - super() hasn't been called"
+            );
+          }
+          return self;
+        }
+
+        function _isNativeReflectConstruct() {
+          if (typeof Reflect === "undefined" || !Reflect.construct)
+            return false;
+          if (Reflect.construct.sham) return false;
+          if (typeof Proxy === "function") return true;
+          try {
+            Date.prototype.toString.call(
+              Reflect.construct(Date, [], function() {})
+            );
+            return true;
+          } catch (e) {
+            return false;
+          }
+        }
+
+        function _getPrototypeOf(o) {
+          _getPrototypeOf = Object.setPrototypeOf
+            ? Object.getPrototypeOf
+            : function _getPrototypeOf(o) {
+                return o.__proto__ || Object.getPrototypeOf(o);
+              };
+          return _getPrototypeOf(o);
+        }
+
         function _defineProperty(obj, key, value) {
           if (key in obj) {
             Object.defineProperty(obj, key, {
@@ -347,375 +377,362 @@
             _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_4__["canUseDOM"]
           )() && __webpack_require__(17);
 
-        var Slider =
-          /*#__PURE__*/
-          (function(_React$Component) {
-            _inherits(Slider, _React$Component);
+        var Slider = /*#__PURE__*/ (function(_React$Component) {
+          _inherits(Slider, _React$Component);
 
-            function Slider(props) {
-              var _this;
+          var _super = _createSuper(Slider);
 
-              _classCallCheck(this, Slider);
+          function Slider(props) {
+            var _this;
 
-              _this = _possibleConstructorReturn(
-                this,
-                _getPrototypeOf(Slider).call(this, props)
-              );
+            _classCallCheck(this, Slider);
 
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "innerSliderRefHandler",
-                function(ref) {
-                  return (_this.innerSlider = ref);
-                }
-              );
+            _this = _super.call(this, props);
 
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "slickPrev",
-                function() {
-                  return _this.innerSlider.slickPrev();
-                }
-              );
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "innerSliderRefHandler",
+              function(ref) {
+                return (_this.innerSlider = ref);
+              }
+            );
 
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "slickNext",
-                function() {
-                  return _this.innerSlider.slickNext();
-                }
-              );
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "slickPrev",
+              function() {
+                return _this.innerSlider.slickPrev();
+              }
+            );
 
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "slickGoTo",
-                function(slide) {
-                  var dontAnimate =
-                    arguments.length > 1 && arguments[1] !== undefined
-                      ? arguments[1]
-                      : false;
-                  return _this.innerSlider.slickGoTo(slide, dontAnimate);
-                }
-              );
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "slickNext",
+              function() {
+                return _this.innerSlider.slickNext();
+              }
+            );
 
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "slickPause",
-                function() {
-                  return _this.innerSlider.pause("paused");
-                }
-              );
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "slickGoTo",
+              function(slide) {
+                var dontAnimate =
+                  arguments.length > 1 && arguments[1] !== undefined
+                    ? arguments[1]
+                    : false;
+                return _this.innerSlider.slickGoTo(slide, dontAnimate);
+              }
+            );
 
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "slickPlay",
-                function() {
-                  return _this.innerSlider.autoPlay("play");
-                }
-              );
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "slickPause",
+              function() {
+                return _this.innerSlider.pause("paused");
+              }
+            );
 
-              _this.state = {
-                breakpoint: null
-              };
-              _this._responsiveMediaHandlers = [];
-              return _this;
-            }
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "slickPlay",
+              function() {
+                return _this.innerSlider.autoPlay("play");
+              }
+            );
 
-            _createClass(Slider, [
-              {
-                key: "media",
-                value: function media(query, handler) {
-                  // javascript handler for  css media query
-                  enquire.register(query, handler);
+            _this.state = {
+              breakpoint: null
+            };
+            _this._responsiveMediaHandlers = [];
+            return _this;
+          }
 
-                  this._responsiveMediaHandlers.push({
-                    query: query,
-                    handler: handler
+          _createClass(Slider, [
+            {
+              key: "media",
+              value: function media(query, handler) {
+                // javascript handler for  css media query
+                enquire.register(query, handler);
+
+                this._responsiveMediaHandlers.push({
+                  query: query,
+                  handler: handler
+                });
+              } // handles responsive breakpoints
+            },
+            {
+              key: "UNSAFE_componentWillMount",
+              value: function UNSAFE_componentWillMount() {
+                var _this2 = this;
+
+                // performance monitoring
+                //if (process.env.NODE_ENV !== 'production') {
+                //const { whyDidYouUpdate } = require('why-did-you-update')
+                //whyDidYouUpdate(React)
+                //}
+                if (this.props.responsive) {
+                  var breakpoints = this.props.responsive.map(function(
+                    breakpt
+                  ) {
+                    return breakpt.breakpoint;
+                  }); // sort them in increasing order of their numerical value
+
+                  breakpoints.sort(function(x, y) {
+                    return x - y;
                   });
-                } // handles responsive breakpoints
-              },
-              {
-                key: "UNSAFE_componentWillMount",
-                value: function UNSAFE_componentWillMount() {
-                  var _this2 = this;
+                  breakpoints.forEach(function(breakpoint, index) {
+                    // media query for each breakpoint
+                    var bQuery;
 
-                  // performance monitoring
-                  //if (process.env.NODE_ENV !== 'production') {
-                  //const { whyDidYouUpdate } = require('why-did-you-update')
-                  //whyDidYouUpdate(React)
-                  //}
-                  if (this.props.responsive) {
-                    var breakpoints = this.props.responsive.map(function(
-                      breakpt
-                    ) {
-                      return breakpt.breakpoint;
-                    }); // sort them in increasing order of their numerical value
+                    if (index === 0) {
+                      bQuery = json2mq__WEBPACK_IMPORTED_MODULE_2___default()({
+                        minWidth: 0,
+                        maxWidth: breakpoint
+                      });
+                    } else {
+                      bQuery = json2mq__WEBPACK_IMPORTED_MODULE_2___default()({
+                        minWidth: breakpoints[index - 1] + 1,
+                        maxWidth: breakpoint
+                      });
+                    } // when not using server side rendering
 
-                    breakpoints.sort(function(x, y) {
-                      return x - y;
-                    });
-                    breakpoints.forEach(function(breakpoint, index) {
-                      // media query for each breakpoint
-                      var bQuery;
-
-                      if (index === 0) {
-                        bQuery = json2mq__WEBPACK_IMPORTED_MODULE_2___default()(
-                          {
-                            minWidth: 0,
-                            maxWidth: breakpoint
-                          }
-                        );
-                      } else {
-                        bQuery = json2mq__WEBPACK_IMPORTED_MODULE_2___default()(
-                          {
-                            minWidth: breakpoints[index - 1] + 1,
-                            maxWidth: breakpoint
-                          }
-                        );
-                      } // when not using server side rendering
-
-                      Object(
-                        _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_4__[
-                          "canUseDOM"
-                        ]
-                      )() &&
-                        _this2.media(bQuery, function() {
-                          _this2.setState({
-                            breakpoint: breakpoint
-                          });
-                        });
-                    }); // Register media query for full screen. Need to support resize from small to large
-                    // convert javascript object to media query string
-
-                    var query = json2mq__WEBPACK_IMPORTED_MODULE_2___default()({
-                      minWidth: breakpoints.slice(-1)[0]
-                    });
                     Object(
                       _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_4__[
                         "canUseDOM"
                       ]
                     )() &&
-                      this.media(query, function() {
+                      _this2.media(bQuery, function() {
                         _this2.setState({
-                          breakpoint: null
+                          breakpoint: breakpoint
                         });
                       });
-                  }
-                }
-              },
-              {
-                key: "componentWillUnmount",
-                value: function componentWillUnmount() {
-                  this._responsiveMediaHandlers.forEach(function(obj) {
-                    enquire.unregister(obj.query, obj.handler);
+                  }); // Register media query for full screen. Need to support resize from small to large
+                  // convert javascript object to media query string
+
+                  var query = json2mq__WEBPACK_IMPORTED_MODULE_2___default()({
+                    minWidth: breakpoints.slice(-1)[0]
                   });
-                }
-              },
-              {
-                key: "render",
-                value: function render() {
-                  var _this3 = this;
-
-                  var settings;
-                  var newProps;
-
-                  if (this.state.breakpoint) {
-                    newProps = this.props.responsive.filter(function(resp) {
-                      return resp.breakpoint === _this3.state.breakpoint;
+                  Object(
+                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_4__[
+                      "canUseDOM"
+                    ]
+                  )() &&
+                    this.media(query, function() {
+                      _this2.setState({
+                        breakpoint: null
+                      });
                     });
-                    settings =
-                      newProps[0].settings === "unslick"
-                        ? "unslick"
-                        : _objectSpread(
-                            {},
-                            _default_props__WEBPACK_IMPORTED_MODULE_3__[
-                              "default"
-                            ],
-                            {},
-                            this.props,
-                            {},
-                            newProps[0].settings
-                          );
-                  } else {
-                    settings = _objectSpread(
-                      {},
-                      _default_props__WEBPACK_IMPORTED_MODULE_3__["default"],
-                      {},
-                      this.props
-                    );
-                  } // force scrolling by one if centerMode is on
-
-                  if (settings.centerMode) {
-                    if (
-                      settings.slidesToScroll > 1 &&
-                      "none" !== "production"
-                    ) {
-                      console.warn(
-                        "slidesToScroll should be equal to 1 in centerMode, you are using ".concat(
-                          settings.slidesToScroll
-                        )
-                      );
-                    }
-
-                    settings.slidesToScroll = 1;
-                  } // force showing one slide and scrolling by one if the fade mode is on
-
-                  if (settings.fade) {
-                    if (settings.slidesToShow > 1 && "none" !== "production") {
-                      console.warn(
-                        "slidesToShow should be equal to 1 when fade is true, you're using ".concat(
-                          settings.slidesToShow
-                        )
-                      );
-                    }
-
-                    if (
-                      settings.slidesToScroll > 1 &&
-                      "none" !== "production"
-                    ) {
-                      console.warn(
-                        "slidesToScroll should be equal to 1 when fade is true, you're using ".concat(
-                          settings.slidesToScroll
-                        )
-                      );
-                    }
-
-                    settings.slidesToShow = 1;
-                    settings.slidesToScroll = 1;
-                  } // makes sure that children is an array, even when there is only 1 child
-
-                  var children = react__WEBPACK_IMPORTED_MODULE_0___default.a.Children.toArray(
-                    this.props.children
-                  ); // Children may contain false or null, so we should filter them
-                  // children may also contain string filled with spaces (in certain cases where we use jsx strings)
-
-                  children = children.filter(function(child) {
-                    if (typeof child === "string") {
-                      return !!child.trim();
-                    }
-
-                    return !!child;
-                  }); // rows and slidesPerRow logic is handled here
-
-                  if (
-                    settings.variableWidth &&
-                    (settings.rows > 1 || settings.slidesPerRow > 1)
-                  ) {
-                    console.warn(
-                      "variableWidth is not supported in case of rows > 1 or slidesPerRow > 1"
-                    );
-                    settings.variableWidth = false;
-                  }
-
-                  var newChildren = [];
-                  var currentWidth = null;
-
-                  for (
-                    var i = 0;
-                    i < children.length;
-                    i += settings.rows * settings.slidesPerRow
-                  ) {
-                    var newSlide = [];
-
-                    for (
-                      var j = i;
-                      j < i + settings.rows * settings.slidesPerRow;
-                      j += settings.slidesPerRow
-                    ) {
-                      var row = [];
-
-                      for (var k = j; k < j + settings.slidesPerRow; k += 1) {
-                        if (settings.variableWidth && children[k].props.style) {
-                          currentWidth = children[k].props.style.width;
-                        }
-
-                        if (k >= children.length) break;
-                        row.push(
-                          react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(
-                            children[k],
-                            {
-                              key: 100 * i + 10 * j + k,
-                              tabIndex: -1,
-                              style: {
-                                width: "".concat(
-                                  100 / settings.slidesPerRow,
-                                  "%"
-                                ),
-                                display: "inline-block"
-                              }
-                            }
-                          )
-                        );
-                      }
-
-                      newSlide.push(
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                          "div",
-                          {
-                            key: 10 * i + j
-                          },
-                          row
-                        )
-                      );
-                    }
-
-                    if (settings.variableWidth) {
-                      newChildren.push(
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                          "div",
-                          {
-                            key: i,
-                            style: {
-                              width: currentWidth
-                            }
-                          },
-                          newSlide
-                        )
-                      );
-                    } else {
-                      newChildren.push(
-                        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                          "div",
-                          {
-                            key: i
-                          },
-                          newSlide
-                        )
-                      );
-                    }
-                  }
-
-                  if (settings === "unslick") {
-                    var className =
-                      "regular slider " + (this.props.className || "");
-                    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                      "div",
-                      {
-                        className: className
-                      },
-                      newChildren
-                    );
-                  } else if (newChildren.length <= settings.slidesToShow) {
-                    settings.unslick = true;
-                  }
-
-                  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                    _inner_slider__WEBPACK_IMPORTED_MODULE_1__["InnerSlider"],
-                    _extends(
-                      {
-                        style: this.props.style,
-                        ref: this.innerSliderRefHandler
-                      },
-                      settings
-                    ),
-                    newChildren
-                  );
                 }
               }
-            ]);
+            },
+            {
+              key: "componentWillUnmount",
+              value: function componentWillUnmount() {
+                this._responsiveMediaHandlers.forEach(function(obj) {
+                  enquire.unregister(obj.query, obj.handler);
+                });
+              }
+            },
+            {
+              key: "render",
+              value: function render() {
+                var _this3 = this;
 
-            return Slider;
-          })(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+                var settings;
+                var newProps;
+
+                if (this.state.breakpoint) {
+                  newProps = this.props.responsive.filter(function(resp) {
+                    return resp.breakpoint === _this3.state.breakpoint;
+                  });
+                  settings =
+                    newProps[0].settings === "unslick"
+                      ? "unslick"
+                      : _objectSpread(
+                          {},
+                          _default_props__WEBPACK_IMPORTED_MODULE_3__[
+                            "default"
+                          ],
+                          {},
+                          this.props,
+                          {},
+                          newProps[0].settings
+                        );
+                } else {
+                  settings = _objectSpread(
+                    {},
+                    _default_props__WEBPACK_IMPORTED_MODULE_3__["default"],
+                    {},
+                    this.props
+                  );
+                } // force scrolling by one if centerMode is on
+
+                if (settings.centerMode) {
+                  if (settings.slidesToScroll > 1 && "none" !== "production") {
+                    console.warn(
+                      "slidesToScroll should be equal to 1 in centerMode, you are using ".concat(
+                        settings.slidesToScroll
+                      )
+                    );
+                  }
+
+                  settings.slidesToScroll = 1;
+                } // force showing one slide and scrolling by one if the fade mode is on
+
+                if (settings.fade) {
+                  if (settings.slidesToShow > 1 && "none" !== "production") {
+                    console.warn(
+                      "slidesToShow should be equal to 1 when fade is true, you're using ".concat(
+                        settings.slidesToShow
+                      )
+                    );
+                  }
+
+                  if (settings.slidesToScroll > 1 && "none" !== "production") {
+                    console.warn(
+                      "slidesToScroll should be equal to 1 when fade is true, you're using ".concat(
+                        settings.slidesToScroll
+                      )
+                    );
+                  }
+
+                  settings.slidesToShow = 1;
+                  settings.slidesToScroll = 1;
+                } // makes sure that children is an array, even when there is only 1 child
+
+                var children = react__WEBPACK_IMPORTED_MODULE_0___default.a.Children.toArray(
+                  this.props.children
+                ); // Children may contain false or null, so we should filter them
+                // children may also contain string filled with spaces (in certain cases where we use jsx strings)
+
+                children = children.filter(function(child) {
+                  if (typeof child === "string") {
+                    return !!child.trim();
+                  }
+
+                  return !!child;
+                }); // rows and slidesPerRow logic is handled here
+
+                if (
+                  settings.variableWidth &&
+                  (settings.rows > 1 || settings.slidesPerRow > 1)
+                ) {
+                  console.warn(
+                    "variableWidth is not supported in case of rows > 1 or slidesPerRow > 1"
+                  );
+                  settings.variableWidth = false;
+                }
+
+                var newChildren = [];
+                var currentWidth = null;
+
+                for (
+                  var i = 0;
+                  i < children.length;
+                  i += settings.rows * settings.slidesPerRow
+                ) {
+                  var newSlide = [];
+
+                  for (
+                    var j = i;
+                    j < i + settings.rows * settings.slidesPerRow;
+                    j += settings.slidesPerRow
+                  ) {
+                    var row = [];
+
+                    for (var k = j; k < j + settings.slidesPerRow; k += 1) {
+                      if (settings.variableWidth && children[k].props.style) {
+                        currentWidth = children[k].props.style.width;
+                      }
+
+                      if (k >= children.length) break;
+                      row.push(
+                        react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(
+                          children[k],
+                          {
+                            key: 100 * i + 10 * j + k,
+                            tabIndex: -1,
+                            style: {
+                              width: "".concat(
+                                100 / settings.slidesPerRow,
+                                "%"
+                              ),
+                              display: "inline-block"
+                            }
+                          }
+                        )
+                      );
+                    }
+
+                    newSlide.push(
+                      /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                        "div",
+                        {
+                          key: 10 * i + j
+                        },
+                        row
+                      )
+                    );
+                  }
+
+                  if (settings.variableWidth) {
+                    newChildren.push(
+                      /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                        "div",
+                        {
+                          key: i,
+                          style: {
+                            width: currentWidth
+                          }
+                        },
+                        newSlide
+                      )
+                    );
+                  } else {
+                    newChildren.push(
+                      /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                        "div",
+                        {
+                          key: i
+                        },
+                        newSlide
+                      )
+                    );
+                  }
+                }
+
+                if (settings === "unslick") {
+                  var className =
+                    "regular slider " + (this.props.className || "");
+                  return /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                    "div",
+                    {
+                      className: className
+                    },
+                    newChildren
+                  );
+                } else if (newChildren.length <= settings.slidesToShow) {
+                  settings.unslick = true;
+                }
+
+                return /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                  _inner_slider__WEBPACK_IMPORTED_MODULE_1__["InnerSlider"],
+                  _extends(
+                    {
+                      style: this.props.style,
+                      ref: this.innerSliderRefHandler
+                    },
+                    settings
+                  ),
+                  newChildren
+                );
+              }
+            }
+          ]);
+
+          return Slider;
+        })(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
         /***/
       },
@@ -827,6 +844,7 @@
         }
 
         function _typeof(obj) {
+          "@babel/helpers - typeof";
           if (
             typeof Symbol === "function" &&
             typeof Symbol.iterator === "symbol"
@@ -864,7 +882,7 @@
           for (var i = 1; i < arguments.length; i++) {
             var source = arguments[i] != null ? arguments[i] : {};
             if (i % 2) {
-              ownKeys(source, true).forEach(function(key) {
+              ownKeys(Object(source), true).forEach(function(key) {
                 _defineProperty(target, key, source[key]);
               });
             } else if (Object.getOwnPropertyDescriptors) {
@@ -873,7 +891,7 @@
                 Object.getOwnPropertyDescriptors(source)
               );
             } else {
-              ownKeys(source).forEach(function(key) {
+              ownKeys(Object(source)).forEach(function(key) {
                 Object.defineProperty(
                   target,
                   key,
@@ -889,34 +907,6 @@
           if (!(instance instanceof Constructor)) {
             throw new TypeError("Cannot call a class as a function");
           }
-        }
-
-        function _possibleConstructorReturn(self, call) {
-          if (
-            call &&
-            (_typeof(call) === "object" || typeof call === "function")
-          ) {
-            return call;
-          }
-          return _assertThisInitialized(self);
-        }
-
-        function _getPrototypeOf(o) {
-          _getPrototypeOf = Object.setPrototypeOf
-            ? Object.getPrototypeOf
-            : function _getPrototypeOf(o) {
-                return o.__proto__ || Object.getPrototypeOf(o);
-              };
-          return _getPrototypeOf(o);
-        }
-
-        function _assertThisInitialized(self) {
-          if (self === void 0) {
-            throw new ReferenceError(
-              "this hasn't been initialised - super() hasn't been called"
-            );
-          }
-          return self;
         }
 
         function _inherits(subClass, superClass) {
@@ -948,6 +938,63 @@
           return _setPrototypeOf(o, p);
         }
 
+        function _createSuper(Derived) {
+          return function() {
+            var Super = _getPrototypeOf(Derived),
+              result;
+            if (_isNativeReflectConstruct()) {
+              var NewTarget = _getPrototypeOf(this).constructor;
+              result = Reflect.construct(Super, arguments, NewTarget);
+            } else {
+              result = Super.apply(this, arguments);
+            }
+            return _possibleConstructorReturn(this, result);
+          };
+        }
+
+        function _possibleConstructorReturn(self, call) {
+          if (
+            call &&
+            (_typeof(call) === "object" || typeof call === "function")
+          ) {
+            return call;
+          }
+          return _assertThisInitialized(self);
+        }
+
+        function _assertThisInitialized(self) {
+          if (self === void 0) {
+            throw new ReferenceError(
+              "this hasn't been initialised - super() hasn't been called"
+            );
+          }
+          return self;
+        }
+
+        function _isNativeReflectConstruct() {
+          if (typeof Reflect === "undefined" || !Reflect.construct)
+            return false;
+          if (Reflect.construct.sham) return false;
+          if (typeof Proxy === "function") return true;
+          try {
+            Date.prototype.toString.call(
+              Reflect.construct(Date, [], function() {})
+            );
+            return true;
+          } catch (e) {
+            return false;
+          }
+        }
+
+        function _getPrototypeOf(o) {
+          _getPrototypeOf = Object.setPrototypeOf
+            ? Object.getPrototypeOf
+            : function _getPrototypeOf(o) {
+                return o.__proto__ || Object.getPrototypeOf(o);
+              };
+          return _getPrototypeOf(o);
+        }
+
         function _defineProperty(obj, key, value) {
           if (key in obj) {
             Object.defineProperty(obj, key, {
@@ -962,619 +1009,72 @@
           return obj;
         }
 
-        var InnerSlider =
-          /*#__PURE__*/
-          (function(_React$Component) {
-            _inherits(InnerSlider, _React$Component);
+        var InnerSlider = /*#__PURE__*/ (function(_React$Component) {
+          _inherits(InnerSlider, _React$Component);
 
-            function InnerSlider(props) {
-              var _this;
+          var _super = _createSuper(InnerSlider);
 
-              _classCallCheck(this, InnerSlider);
+          function InnerSlider(props) {
+            var _this;
 
-              _this = _possibleConstructorReturn(
-                this,
-                _getPrototypeOf(InnerSlider).call(this, props)
-              );
+            _classCallCheck(this, InnerSlider);
 
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "listRefHandler",
-                function(ref) {
-                  return (_this.list = ref);
-                }
-              );
+            _this = _super.call(this, props);
 
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "trackRefHandler",
-                function(ref) {
-                  return (_this.track = ref);
-                }
-              );
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "listRefHandler",
+              function(ref) {
+                return (_this.list = ref);
+              }
+            );
 
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "adaptHeight",
-                function() {
-                  if (_this.props.adaptiveHeight && _this.list) {
-                    var elem = _this.list.querySelector(
-                      '[data-index="'.concat(_this.state.currentSlide, '"]')
-                    );
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "trackRefHandler",
+              function(ref) {
+                return (_this.track = ref);
+              }
+            );
 
-                    _this.list.style.height =
-                      Object(
-                        _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                          "getHeight"
-                        ]
-                      )(elem) + "px";
-                  }
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "UNSAFE_componentWillMount",
-                function() {
-                  _this.ssrInit();
-
-                  _this.props.onInit && _this.props.onInit();
-
-                  if (_this.props.lazyLoad) {
-                    var slidesToLoad = Object(
-                      _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                        "getOnDemandLazySlides"
-                      ]
-                    )(_objectSpread({}, _this.props, {}, _this.state));
-
-                    if (slidesToLoad.length > 0) {
-                      _this.setState(function(prevState) {
-                        return {
-                          lazyLoadedList: prevState.lazyLoadedList.concat(
-                            slidesToLoad
-                          )
-                        };
-                      });
-
-                      if (_this.props.onLazyLoad) {
-                        _this.props.onLazyLoad(slidesToLoad);
-                      }
-                    }
-                  }
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "componentDidMount",
-                function() {
-                  var spec = _objectSpread(
-                    {
-                      listRef: _this.list,
-                      trackRef: _this.track
-                    },
-                    _this.props
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "adaptHeight",
+              function() {
+                if (_this.props.adaptiveHeight && _this.list) {
+                  var elem = _this.list.querySelector(
+                    '[data-index="'.concat(_this.state.currentSlide, '"]')
                   );
 
-                  _this.updateState(spec, true, function() {
-                    _this.adaptHeight();
-
-                    _this.props.autoplay && _this.autoPlay("update");
-                  });
-
-                  if (_this.props.lazyLoad === "progressive") {
-                    _this.lazyLoadTimer = setInterval(
-                      _this.progressiveLazyLoad,
-                      1000
-                    );
-                  }
-
-                  _this.ro = new resize_observer_polyfill__WEBPACK_IMPORTED_MODULE_9__[
-                    "default"
-                  ](function() {
-                    if (_this.state.animating) {
-                      _this.onWindowResized(false); // don't set trackStyle hence don't break animation
-
-                      _this.callbackTimers.push(
-                        setTimeout(function() {
-                          return _this.onWindowResized();
-                        }, _this.props.speed)
-                      );
-                    } else {
-                      _this.onWindowResized();
-                    }
-                  });
-
-                  _this.ro.observe(_this.list);
-
-                  Array.prototype.forEach.call(
-                    document.querySelectorAll(".slick-slide"),
-                    function(slide) {
-                      slide.onfocus = _this.props.pauseOnFocus
-                        ? _this.onSlideFocus
-                        : null;
-                      slide.onblur = _this.props.pauseOnFocus
-                        ? _this.onSlideBlur
-                        : null;
-                    }
-                  ); // To support server-side rendering
-
-                  if (!window) {
-                    return;
-                  }
-
-                  if (window.addEventListener) {
-                    window.addEventListener("resize", _this.onWindowResized);
-                  } else {
-                    window.attachEvent("onresize", _this.onWindowResized);
-                  }
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "componentWillUnmount",
-                function() {
-                  if (_this.animationEndCallback) {
-                    clearTimeout(_this.animationEndCallback);
-                  }
-
-                  if (_this.lazyLoadTimer) {
-                    clearInterval(_this.lazyLoadTimer);
-                  }
-
-                  if (_this.callbackTimers.length) {
-                    _this.callbackTimers.forEach(function(timer) {
-                      return clearTimeout(timer);
-                    });
-
-                    _this.callbackTimers = [];
-                  }
-
-                  if (window.addEventListener) {
-                    window.removeEventListener("resize", _this.onWindowResized);
-                  } else {
-                    window.detachEvent("onresize", _this.onWindowResized);
-                  }
-
-                  if (_this.autoplayTimer) {
-                    clearInterval(_this.autoplayTimer);
-                  }
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "UNSAFE_componentWillReceiveProps",
-                function(nextProps) {
-                  var spec = _objectSpread(
-                    {
-                      listRef: _this.list,
-                      trackRef: _this.track
-                    },
-                    nextProps,
-                    {},
-                    _this.state
-                  );
-
-                  var setTrackStyle = false;
-
-                  for (
-                    var _i = 0, _Object$keys = Object.keys(_this.props);
-                    _i < _Object$keys.length;
-                    _i++
-                  ) {
-                    var key = _Object$keys[_i];
-
-                    if (!nextProps.hasOwnProperty(key)) {
-                      setTrackStyle = true;
-                      break;
-                    }
-
-                    if (
-                      _typeof(nextProps[key]) === "object" ||
-                      typeof nextProps[key] === "function"
-                    ) {
-                      continue;
-                    }
-
-                    if (nextProps[key] !== _this.props[key]) {
-                      setTrackStyle = true;
-                      break;
-                    }
-                  }
-
-                  _this.updateState(spec, setTrackStyle, function() {
-                    if (
-                      _this.state.currentSlide >=
-                      react__WEBPACK_IMPORTED_MODULE_0___default.a.Children.count(
-                        nextProps.children
-                      )
-                    ) {
-                      _this.changeSlide({
-                        message: "index",
-                        index:
-                          react__WEBPACK_IMPORTED_MODULE_0___default.a.Children.count(
-                            nextProps.children
-                          ) - nextProps.slidesToShow,
-                        currentSlide: _this.state.currentSlide
-                      });
-                    }
-
-                    if (nextProps.autoplay) {
-                      _this.autoPlay("update");
-                    } else {
-                      _this.pause("paused");
-                    }
-                  });
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "componentDidUpdate",
-                function() {
-                  _this.checkImagesLoad();
-
-                  _this.props.onReInit && _this.props.onReInit();
-
-                  if (_this.props.lazyLoad) {
-                    var slidesToLoad = Object(
-                      _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                        "getOnDemandLazySlides"
-                      ]
-                    )(_objectSpread({}, _this.props, {}, _this.state));
-
-                    if (slidesToLoad.length > 0) {
-                      _this.setState(function(prevState) {
-                        return {
-                          lazyLoadedList: prevState.lazyLoadedList.concat(
-                            slidesToLoad
-                          )
-                        };
-                      });
-
-                      if (_this.props.onLazyLoad) {
-                        _this.props.onLazyLoad(slidesToLoad);
-                      }
-                    }
-                  } // if (this.props.onLazyLoad) {
-                  //   this.props.onLazyLoad([leftMostSlide])
-                  // }
-
-                  _this.adaptHeight();
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "onWindowResized",
-                function(setTrackStyle) {
-                  if (_this.debouncedResize) _this.debouncedResize.cancel();
-                  _this.debouncedResize = lodash_debounce__WEBPACK_IMPORTED_MODULE_3___default()(
-                    function() {
-                      return _this.resizeWindow(setTrackStyle);
-                    },
-                    50
-                  );
-
-                  _this.debouncedResize();
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "resizeWindow",
-                function() {
-                  var setTrackStyle =
-                    arguments.length > 0 && arguments[0] !== undefined
-                      ? arguments[0]
-                      : true;
-                  if (
-                    !react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.findDOMNode(
-                      _this.track
-                    )
-                  )
-                    return;
-
-                  var spec = _objectSpread(
-                    {
-                      listRef: _this.list,
-                      trackRef: _this.track
-                    },
-                    _this.props,
-                    {},
-                    _this.state
-                  );
-
-                  _this.updateState(spec, setTrackStyle, function() {
-                    if (_this.props.autoplay) _this.autoPlay("update");
-                    else _this.pause("paused");
-                  }); // animating state should be cleared while resizing, otherwise autoplay stops working
-
-                  _this.setState({
-                    animating: false
-                  });
-
-                  clearTimeout(_this.animationEndCallback);
-                  delete _this.animationEndCallback;
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "updateState",
-                function(spec, setTrackStyle, callback) {
-                  var updatedState = Object(
-                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                      "initializedState"
-                    ]
-                  )(spec);
-                  spec = _objectSpread({}, spec, {}, updatedState, {
-                    slideIndex: updatedState.currentSlide
-                  });
-                  var targetLeft = Object(
-                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                      "getTrackLeft"
-                    ]
-                  )(spec);
-                  spec = _objectSpread({}, spec, {
-                    left: targetLeft
-                  });
-                  var trackStyle = Object(
-                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                      "getTrackCSS"
-                    ]
-                  )(spec);
-
-                  if (
-                    setTrackStyle ||
-                    react__WEBPACK_IMPORTED_MODULE_0___default.a.Children.count(
-                      _this.props.children
-                    ) !==
-                      react__WEBPACK_IMPORTED_MODULE_0___default.a.Children.count(
-                        spec.children
-                      )
-                  ) {
-                    updatedState["trackStyle"] = trackStyle;
-                  }
-
-                  _this.setState(updatedState, callback);
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "ssrInit",
-                function() {
-                  if (_this.props.variableWidth) {
-                    var _trackWidth = 0,
-                      _trackLeft = 0;
-                    var childrenWidths = [];
-                    var preClones = Object(
-                      _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                        "getPreClones"
-                      ]
-                    )(
-                      _objectSpread({}, _this.props, {}, _this.state, {
-                        slideCount: _this.props.children.length
-                      })
-                    );
-                    var postClones = Object(
-                      _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                        "getPostClones"
-                      ]
-                    )(
-                      _objectSpread({}, _this.props, {}, _this.state, {
-                        slideCount: _this.props.children.length
-                      })
-                    );
-
-                    _this.props.children.forEach(function(child) {
-                      childrenWidths.push(child.props.style.width);
-                      _trackWidth += child.props.style.width;
-                    });
-
-                    for (var i = 0; i < preClones; i++) {
-                      _trackLeft +=
-                        childrenWidths[childrenWidths.length - 1 - i];
-                      _trackWidth +=
-                        childrenWidths[childrenWidths.length - 1 - i];
-                    }
-
-                    for (var _i2 = 0; _i2 < postClones; _i2++) {
-                      _trackWidth += childrenWidths[_i2];
-                    }
-
-                    for (var _i3 = 0; _i3 < _this.state.currentSlide; _i3++) {
-                      _trackLeft += childrenWidths[_i3];
-                    }
-
-                    var _trackStyle = {
-                      width: _trackWidth + "px",
-                      left: -_trackLeft + "px"
-                    };
-
-                    if (_this.props.centerMode) {
-                      var currentWidth = "".concat(
-                        childrenWidths[_this.state.currentSlide],
-                        "px"
-                      );
-                      _trackStyle.left = "calc("
-                        .concat(_trackStyle.left, " + (100% - ")
-                        .concat(currentWidth, ") / 2 ) ");
-                    }
-
-                    _this.setState({
-                      trackStyle: _trackStyle
-                    });
-
-                    return;
-                  }
-
-                  var childrenCount = react__WEBPACK_IMPORTED_MODULE_0___default.a.Children.count(
-                    _this.props.children
-                  );
-
-                  var spec = _objectSpread({}, _this.props, {}, _this.state, {
-                    slideCount: childrenCount
-                  });
-
-                  var slideCount =
+                  _this.list.style.height =
                     Object(
                       _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                        "getPreClones"
+                        "getHeight"
                       ]
-                    )(spec) +
-                    Object(
-                      _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                        "getPostClones"
-                      ]
-                    )(spec) +
-                    childrenCount;
-                  var trackWidth =
-                    (100 / _this.props.slidesToShow) * slideCount;
-                  var slideWidth = 100 / slideCount;
-                  var trackLeft =
-                    (-slideWidth *
-                      (Object(
-                        _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                          "getPreClones"
-                        ]
-                      )(spec) +
-                        _this.state.currentSlide) *
-                      trackWidth) /
-                    100;
-
-                  if (_this.props.centerMode) {
-                    trackLeft += (100 - (slideWidth * trackWidth) / 100) / 2;
-                  }
-
-                  var trackStyle = {
-                    width: trackWidth + "%",
-                    left: trackLeft + "%"
-                  };
-
-                  _this.setState({
-                    slideWidth: slideWidth + "%",
-                    trackStyle: trackStyle
-                  });
+                    )(elem) + "px";
                 }
-              );
+              }
+            );
 
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "onClickImage",
-                function(image) {
-                  if (!image.onclick) {
-                    image.onclick = function() {
-                      return image.parentNode.focus();
-                    };
-                  } else {
-                    var prevClickHandler = image.onclick;
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "UNSAFE_componentWillMount",
+              function() {
+                _this.ssrInit();
 
-                    image.onclick = function() {
-                      prevClickHandler();
-                      image.parentNode.focus();
-                    };
-                  }
-                }
-              );
+                _this.props.onInit && _this.props.onInit();
 
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "onLoadImage",
-                function(image, handler) {
-                  if (!image.onload) {
-                    if (_this.props.lazyLoad) {
-                      image.onload = function() {
-                        _this.adaptHeight();
-
-                        _this.callbackTimers.push(
-                          setTimeout(_this.onWindowResized, _this.props.speed)
-                        );
-                      };
-                    } else {
-                      image.onload = handler;
-
-                      image.onerror = function() {
-                        handler();
-                        _this.props.onLazyLoadError &&
-                          _this.props.onLazyLoadError();
-                      };
-                    }
-                  }
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "checkImagesLoad",
-                function() {
-                  var images = document.querySelectorAll(".slick-slide img");
-                  var imagesCount = images.length,
-                    loadedCount = 0;
-
-                  var handler = function handler() {
-                    return (
-                      ++loadedCount &&
-                      loadedCount >= imagesCount &&
-                      _this.onWindowResized()
-                    );
-                  };
-
-                  Array.prototype.forEach.call(images, function(image) {
-                    image.onclick = _this.onClickImage.bind(image);
-                    image.onload = _this.onLoadImage.bind(image, handler);
-                  });
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "progressiveLazyLoad",
-                function() {
-                  var slidesToLoad = [];
-
-                  var spec = _objectSpread({}, _this.props, {}, _this.state);
-
-                  for (
-                    var index = _this.state.currentSlide;
-                    index <
-                    _this.state.slideCount +
-                      Object(
-                        _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                          "getPostClones"
-                        ]
-                      )(spec);
-                    index++
-                  ) {
-                    if (_this.state.lazyLoadedList.indexOf(index) < 0) {
-                      slidesToLoad.push(index);
-                      break;
-                    }
-                  }
-
-                  for (
-                    var _index = _this.state.currentSlide - 1;
-                    _index >=
-                    -Object(
-                      _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                        "getPreClones"
-                      ]
-                    )(spec);
-                    _index--
-                  ) {
-                    if (_this.state.lazyLoadedList.indexOf(_index) < 0) {
-                      slidesToLoad.push(_index);
-                      break;
-                    }
-                  }
+                if (_this.props.lazyLoad) {
+                  var slidesToLoad = Object(
+                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                      "getOnDemandLazySlides"
+                    ]
+                  )(_objectSpread({}, _this.props, {}, _this.state));
 
                   if (slidesToLoad.length > 0) {
-                    _this.setState(function(state) {
+                    _this.setState(function(prevState) {
                       return {
-                        lazyLoadedList: state.lazyLoadedList.concat(
+                        lazyLoadedList: prevState.lazyLoadedList.concat(
                           slidesToLoad
                         )
                       };
@@ -1583,698 +1083,1219 @@
                     if (_this.props.onLazyLoad) {
                       _this.props.onLazyLoad(slidesToLoad);
                     }
+                  }
+                }
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "componentDidMount",
+              function() {
+                var spec = _objectSpread(
+                  {
+                    listRef: _this.list,
+                    trackRef: _this.track
+                  },
+                  _this.props
+                );
+
+                _this.updateState(spec, true, function() {
+                  _this.adaptHeight();
+
+                  _this.props.autoplay && _this.autoPlay("update");
+                });
+
+                if (_this.props.lazyLoad === "progressive") {
+                  _this.lazyLoadTimer = setInterval(
+                    _this.progressiveLazyLoad,
+                    1000
+                  );
+                }
+
+                _this.ro = new resize_observer_polyfill__WEBPACK_IMPORTED_MODULE_9__[
+                  "default"
+                ](function() {
+                  if (_this.state.animating) {
+                    _this.onWindowResized(false); // don't set trackStyle hence don't break animation
+
+                    _this.callbackTimers.push(
+                      setTimeout(function() {
+                        return _this.onWindowResized();
+                      }, _this.props.speed)
+                    );
                   } else {
-                    if (_this.lazyLoadTimer) {
-                      clearInterval(_this.lazyLoadTimer);
-                      delete _this.lazyLoadTimer;
-                    }
+                    _this.onWindowResized();
                   }
+                });
+
+                _this.ro.observe(_this.list);
+
+                Array.prototype.forEach.call(
+                  document.querySelectorAll(".slick-slide"),
+                  function(slide) {
+                    slide.onfocus = _this.props.pauseOnFocus
+                      ? _this.onSlideFocus
+                      : null;
+                    slide.onblur = _this.props.pauseOnFocus
+                      ? _this.onSlideBlur
+                      : null;
+                  }
+                ); // To support server-side rendering
+
+                if (!window) {
+                  return;
                 }
-              );
 
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "slideHandler",
-                function(index) {
-                  var dontAnimate =
-                    arguments.length > 1 && arguments[1] !== undefined
-                      ? arguments[1]
-                      : false;
-                  var _this$props = _this.props,
-                    asNavFor = _this$props.asNavFor,
-                    beforeChange = _this$props.beforeChange,
-                    onLazyLoad = _this$props.onLazyLoad,
-                    speed = _this$props.speed,
-                    afterChange = _this$props.afterChange; // capture currentslide before state is updated
+                if (window.addEventListener) {
+                  window.addEventListener("resize", _this.onWindowResized);
+                } else {
+                  window.attachEvent("onresize", _this.onWindowResized);
+                }
+              }
+            );
 
-                  var currentSlide = _this.state.currentSlide;
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "componentWillUnmount",
+              function() {
+                if (_this.animationEndCallback) {
+                  clearTimeout(_this.animationEndCallback);
+                }
 
-                  var _slideHandler = Object(
-                      _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                        "slideHandler"
-                      ]
-                    )(
-                      _objectSpread(
-                        {
-                          index: index
-                        },
-                        _this.props,
-                        {},
-                        _this.state,
-                        {
-                          trackRef: _this.track,
-                          useCSS: _this.props.useCSS && !dontAnimate
-                        }
-                      )
-                    ),
-                    state = _slideHandler.state,
-                    nextState = _slideHandler.nextState;
+                if (_this.lazyLoadTimer) {
+                  clearInterval(_this.lazyLoadTimer);
+                }
 
-                  if (!state) return;
-                  beforeChange &&
-                    beforeChange(currentSlide, state.currentSlide);
-                  var slidesToLoad = state.lazyLoadedList.filter(function(
-                    value
-                  ) {
-                    return _this.state.lazyLoadedList.indexOf(value) < 0;
+                if (_this.callbackTimers.length) {
+                  _this.callbackTimers.forEach(function(timer) {
+                    return clearTimeout(timer);
                   });
-                  onLazyLoad &&
-                    slidesToLoad.length > 0 &&
-                    onLazyLoad(slidesToLoad);
 
-                  _this.setState(state, function() {
-                    asNavFor && asNavFor.innerSlider.slideHandler(index);
-                    if (!nextState) return;
-                    _this.animationEndCallback = setTimeout(function() {
-                      var animating = nextState.animating,
-                        firstBatch = _objectWithoutProperties(nextState, [
-                          "animating"
-                        ]);
-
-                      _this.setState(firstBatch, function() {
-                        _this.callbackTimers.push(
-                          setTimeout(function() {
-                            return _this.setState({
-                              animating: animating
-                            });
-                          }, 10)
-                        );
-
-                        afterChange && afterChange(state.currentSlide);
-                        delete _this.animationEndCallback;
-                      });
-                    }, speed);
-                  });
+                  _this.callbackTimers = [];
                 }
-              );
 
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "changeSlide",
-                function(options) {
-                  var dontAnimate =
-                    arguments.length > 1 && arguments[1] !== undefined
-                      ? arguments[1]
-                      : false;
-
-                  var spec = _objectSpread({}, _this.props, {}, _this.state);
-
-                  var targetSlide = Object(
-                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                      "changeSlide"
-                    ]
-                  )(spec, options);
-                  if (targetSlide !== 0 && !targetSlide) return;
-
-                  if (dontAnimate === true) {
-                    _this.slideHandler(targetSlide, dontAnimate);
-                  } else {
-                    _this.slideHandler(targetSlide);
-                  }
+                if (window.addEventListener) {
+                  window.removeEventListener("resize", _this.onWindowResized);
+                } else {
+                  window.detachEvent("onresize", _this.onWindowResized);
                 }
-              );
 
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "clickHandler",
-                function(e) {
-                  if (_this.clickable === false) {
-                    e.stopPropagation();
-                    e.preventDefault();
-                  }
-
-                  _this.clickable = true;
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "keyHandler",
-                function(e) {
-                  var dir = Object(
-                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                      "keyHandler"
-                    ]
-                  )(e, _this.props.accessibility, _this.props.rtl);
-                  dir !== "" &&
-                    _this.changeSlide({
-                      message: dir
-                    });
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "selectHandler",
-                function(options) {
-                  _this.changeSlide(options);
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "disableBodyScroll",
-                function() {
-                  var preventDefault = function preventDefault(e) {
-                    e = e || window.event;
-                    if (e.preventDefault) e.preventDefault();
-                    e.returnValue = false;
-                  };
-
-                  window.ontouchmove = preventDefault;
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "enableBodyScroll",
-                function() {
-                  window.ontouchmove = null;
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "swipeStart",
-                function(e) {
-                  if (_this.props.verticalSwiping) {
-                    _this.disableBodyScroll();
-                  }
-
-                  var state = Object(
-                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                      "swipeStart"
-                    ]
-                  )(e, _this.props.swipe, _this.props.draggable);
-                  state !== "" && _this.setState(state);
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "swipeMove",
-                function(e) {
-                  var state = Object(
-                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                      "swipeMove"
-                    ]
-                  )(
-                    e,
-                    _objectSpread({}, _this.props, {}, _this.state, {
-                      trackRef: _this.track,
-                      listRef: _this.list,
-                      slideIndex: _this.state.currentSlide
-                    })
-                  );
-                  if (!state) return;
-
-                  if (state["swiping"]) {
-                    _this.clickable = false;
-                  }
-
-                  _this.setState(state);
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "swipeEnd",
-                function(e) {
-                  var state = Object(
-                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                      "swipeEnd"
-                    ]
-                  )(
-                    e,
-                    _objectSpread({}, _this.props, {}, _this.state, {
-                      trackRef: _this.track,
-                      listRef: _this.list,
-                      slideIndex: _this.state.currentSlide
-                    })
-                  );
-                  if (!state) return;
-                  var triggerSlideHandler = state["triggerSlideHandler"];
-                  delete state["triggerSlideHandler"];
-
-                  _this.setState(state);
-
-                  if (triggerSlideHandler === undefined) return;
-
-                  _this.slideHandler(triggerSlideHandler);
-
-                  if (_this.props.verticalSwiping) {
-                    _this.enableBodyScroll();
-                  }
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "slickPrev",
-                function() {
-                  // this and fellow methods are wrapped in setTimeout
-                  // to make sure initialize setState has happened before
-                  // any of such methods are called
-                  _this.callbackTimers.push(
-                    setTimeout(function() {
-                      return _this.changeSlide({
-                        message: "previous"
-                      });
-                    }, 0)
-                  );
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "slickNext",
-                function() {
-                  _this.callbackTimers.push(
-                    setTimeout(function() {
-                      return _this.changeSlide({
-                        message: "next"
-                      });
-                    }, 0)
-                  );
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "slickGoTo",
-                function(slide) {
-                  var dontAnimate =
-                    arguments.length > 1 && arguments[1] !== undefined
-                      ? arguments[1]
-                      : false;
-                  slide = Number(slide);
-                  if (isNaN(slide)) return "";
-
-                  _this.callbackTimers.push(
-                    setTimeout(function() {
-                      return _this.changeSlide(
-                        {
-                          message: "index",
-                          index: slide,
-                          currentSlide: _this.state.currentSlide
-                        },
-                        dontAnimate
-                      );
-                    }, 0)
-                  );
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "play",
-                function() {
-                  var nextIndex;
-
-                  if (_this.props.rtl) {
-                    nextIndex =
-                      _this.state.currentSlide - _this.props.slidesToScroll;
-                  } else {
-                    if (
-                      Object(
-                        _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                          "canGoNext"
-                        ]
-                      )(_objectSpread({}, _this.props, {}, _this.state))
-                    ) {
-                      nextIndex =
-                        _this.state.currentSlide + _this.props.slidesToScroll;
-                    } else {
-                      return false;
-                    }
-                  }
-
-                  _this.slideHandler(nextIndex);
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "autoPlay",
-                function(playType) {
-                  if (_this.autoplayTimer) {
-                    clearInterval(_this.autoplayTimer);
-                  }
-
-                  var autoplaying = _this.state.autoplaying;
-
-                  if (playType === "update") {
-                    if (
-                      autoplaying === "hovered" ||
-                      autoplaying === "focused" ||
-                      autoplaying === "paused"
-                    ) {
-                      return;
-                    }
-                  } else if (playType === "leave") {
-                    if (autoplaying === "paused" || autoplaying === "focused") {
-                      return;
-                    }
-                  } else if (playType === "blur") {
-                    if (autoplaying === "paused" || autoplaying === "hovered") {
-                      return;
-                    }
-                  }
-
-                  _this.autoplayTimer = setInterval(
-                    _this.play,
-                    _this.props.autoplaySpeed + 50
-                  );
-
-                  _this.setState({
-                    autoplaying: "playing"
-                  });
-                }
-              );
-
-              _defineProperty(_assertThisInitialized(_this), "pause", function(
-                pauseType
-              ) {
                 if (_this.autoplayTimer) {
                   clearInterval(_this.autoplayTimer);
-                  _this.autoplayTimer = null;
                 }
+              }
+            );
 
-                var autoplaying = _this.state.autoplaying;
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "UNSAFE_componentWillReceiveProps",
+              function(nextProps) {
+                var spec = _objectSpread(
+                  {
+                    listRef: _this.list,
+                    trackRef: _this.track
+                  },
+                  nextProps,
+                  {},
+                  _this.state
+                );
 
-                if (pauseType === "paused") {
-                  _this.setState({
-                    autoplaying: "paused"
-                  });
-                } else if (pauseType === "focused") {
-                  if (autoplaying === "hovered" || autoplaying === "playing") {
-                    _this.setState({
-                      autoplaying: "focused"
-                    });
+                var setTrackStyle = false;
+
+                for (
+                  var _i = 0, _Object$keys = Object.keys(_this.props);
+                  _i < _Object$keys.length;
+                  _i++
+                ) {
+                  var key = _Object$keys[_i];
+
+                  if (!nextProps.hasOwnProperty(key)) {
+                    setTrackStyle = true;
+                    break;
                   }
-                } else {
-                  // pauseType  is 'hovered'
-                  if (autoplaying === "playing") {
-                    _this.setState({
-                      autoplaying: "hovered"
-                    });
-                  }
-                }
-              });
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "onDotsOver",
-                function() {
-                  return _this.props.autoplay && _this.pause("hovered");
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "onDotsLeave",
-                function() {
-                  return (
-                    _this.props.autoplay &&
-                    _this.state.autoplaying === "hovered" &&
-                    _this.autoPlay("leave")
-                  );
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "onTrackOver",
-                function() {
-                  return _this.props.autoplay && _this.pause("hovered");
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "onTrackLeave",
-                function() {
-                  return (
-                    _this.props.autoplay &&
-                    _this.state.autoplaying === "hovered" &&
-                    _this.autoPlay("leave")
-                  );
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "onSlideFocus",
-                function() {
-                  return _this.props.autoplay && _this.pause("focused");
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "onSlideBlur",
-                function() {
-                  return (
-                    _this.props.autoplay &&
-                    _this.state.autoplaying === "focused" &&
-                    _this.autoPlay("blur")
-                  );
-                }
-              );
-
-              _defineProperty(
-                _assertThisInitialized(_this),
-                "render",
-                function() {
-                  var className = classnames__WEBPACK_IMPORTED_MODULE_4___default()(
-                    "slick-slider",
-                    _this.props.className,
-                    {
-                      "slick-vertical": _this.props.vertical,
-                      "slick-initialized": true
-                    }
-                  );
-
-                  var spec = _objectSpread({}, _this.props, {}, _this.state);
-
-                  var trackProps = Object(
-                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                      "extractObject"
-                    ]
-                  )(spec, [
-                    "fade",
-                    "cssEase",
-                    "speed",
-                    "infinite",
-                    "centerMode",
-                    "focusOnSelect",
-                    "currentSlide",
-                    "lazyLoad",
-                    "lazyLoadedList",
-                    "rtl",
-                    "slideWidth",
-                    "slideHeight",
-                    "listHeight",
-                    "vertical",
-                    "slidesToShow",
-                    "slidesToScroll",
-                    "slideCount",
-                    "trackStyle",
-                    "variableWidth",
-                    "unslick",
-                    "centerPadding"
-                  ]);
-                  var pauseOnHover = _this.props.pauseOnHover;
-                  trackProps = _objectSpread({}, trackProps, {
-                    onMouseEnter: pauseOnHover ? _this.onTrackOver : null,
-                    onMouseLeave: pauseOnHover ? _this.onTrackLeave : null,
-                    onMouseOver: pauseOnHover ? _this.onTrackOver : null,
-                    focusOnSelect: _this.props.focusOnSelect
-                      ? _this.selectHandler
-                      : null
-                  });
-                  var dots;
 
                   if (
-                    _this.props.dots === true &&
-                    _this.state.slideCount >= _this.props.slidesToShow
+                    _typeof(nextProps[key]) === "object" ||
+                    typeof nextProps[key] === "function"
                   ) {
-                    var dotProps = Object(
-                      _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
-                        "extractObject"
-                      ]
-                    )(spec, [
-                      "dotsClass",
-                      "slideCount",
-                      "slidesToShow",
-                      "currentSlide",
-                      "slidesToScroll",
-                      "clickHandler",
-                      "children",
-                      "customPaging",
-                      "infinite",
-                      "appendDots"
-                    ]);
-                    var pauseOnDotsHover = _this.props.pauseOnDotsHover;
-                    dotProps = _objectSpread({}, dotProps, {
-                      clickHandler: _this.changeSlide,
-                      onMouseEnter: pauseOnDotsHover ? _this.onDotsLeave : null,
-                      onMouseOver: pauseOnDotsHover ? _this.onDotsOver : null,
-                      onMouseLeave: pauseOnDotsHover ? _this.onDotsLeave : null
-                    });
-                    dots = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                      _dots__WEBPACK_IMPORTED_MODULE_7__["Dots"],
-                      dotProps
-                    );
+                    continue;
                   }
 
-                  var prevArrow, nextArrow;
-                  var arrowProps = Object(
+                  if (nextProps[key] !== _this.props[key]) {
+                    setTrackStyle = true;
+                    break;
+                  }
+                }
+
+                _this.updateState(spec, setTrackStyle, function() {
+                  if (
+                    _this.state.currentSlide >=
+                    react__WEBPACK_IMPORTED_MODULE_0___default.a.Children.count(
+                      nextProps.children
+                    )
+                  ) {
+                    _this.changeSlide({
+                      message: "index",
+                      index:
+                        react__WEBPACK_IMPORTED_MODULE_0___default.a.Children.count(
+                          nextProps.children
+                        ) - nextProps.slidesToShow,
+                      currentSlide: _this.state.currentSlide
+                    });
+                  }
+
+                  if (nextProps.autoplay) {
+                    _this.autoPlay("update");
+                  } else {
+                    _this.pause("paused");
+                  }
+                });
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "componentDidUpdate",
+              function() {
+                _this.checkImagesLoad();
+
+                _this.props.onReInit && _this.props.onReInit();
+
+                if (_this.props.lazyLoad) {
+                  var slidesToLoad = Object(
+                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                      "getOnDemandLazySlides"
+                    ]
+                  )(_objectSpread({}, _this.props, {}, _this.state));
+
+                  if (slidesToLoad.length > 0) {
+                    _this.setState(function(prevState) {
+                      return {
+                        lazyLoadedList: prevState.lazyLoadedList.concat(
+                          slidesToLoad
+                        )
+                      };
+                    });
+
+                    if (_this.props.onLazyLoad) {
+                      _this.props.onLazyLoad(slidesToLoad);
+                    }
+                  }
+                } // if (this.props.onLazyLoad) {
+                //   this.props.onLazyLoad([leftMostSlide])
+                // }
+
+                _this.adaptHeight();
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "onWindowResized",
+              function(setTrackStyle) {
+                if (_this.debouncedResize) _this.debouncedResize.cancel();
+                _this.debouncedResize = lodash_debounce__WEBPACK_IMPORTED_MODULE_3___default()(
+                  function() {
+                    return _this.resizeWindow(setTrackStyle);
+                  },
+                  50
+                );
+
+                _this.debouncedResize();
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "resizeWindow",
+              function() {
+                var setTrackStyle =
+                  arguments.length > 0 && arguments[0] !== undefined
+                    ? arguments[0]
+                    : true;
+                if (
+                  !react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.findDOMNode(
+                    _this.track
+                  )
+                )
+                  return;
+
+                var spec = _objectSpread(
+                  {
+                    listRef: _this.list,
+                    trackRef: _this.track
+                  },
+                  _this.props,
+                  {},
+                  _this.state
+                );
+
+                _this.updateState(spec, setTrackStyle, function() {
+                  if (_this.props.autoplay) _this.autoPlay("update");
+                  else _this.pause("paused");
+                }); // animating state should be cleared while resizing, otherwise autoplay stops working
+
+                _this.setState({
+                  animating: false
+                });
+
+                clearTimeout(_this.animationEndCallback);
+                delete _this.animationEndCallback;
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "updateState",
+              function(spec, setTrackStyle, callback) {
+                var updatedState = Object(
+                  _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                    "initializedState"
+                  ]
+                )(spec);
+                spec = _objectSpread({}, spec, {}, updatedState, {
+                  slideIndex: updatedState.currentSlide
+                });
+                var targetLeft = Object(
+                  _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                    "getTrackLeft"
+                  ]
+                )(spec);
+                spec = _objectSpread({}, spec, {
+                  left: targetLeft
+                });
+                var trackStyle = Object(
+                  _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                    "getTrackCSS"
+                  ]
+                )(spec);
+
+                if (
+                  setTrackStyle ||
+                  react__WEBPACK_IMPORTED_MODULE_0___default.a.Children.count(
+                    _this.props.children
+                  ) !==
+                    react__WEBPACK_IMPORTED_MODULE_0___default.a.Children.count(
+                      spec.children
+                    )
+                ) {
+                  updatedState["trackStyle"] = trackStyle;
+                }
+
+                _this.setState(updatedState, callback);
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "ssrInit",
+              function() {
+                if (_this.props.variableWidth) {
+                  var _trackWidth = 0,
+                    _trackLeft = 0;
+                  var childrenWidths = [];
+                  var preClones = Object(
+                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                      "getPreClones"
+                    ]
+                  )(
+                    _objectSpread({}, _this.props, {}, _this.state, {
+                      slideCount: _this.props.children.length
+                    })
+                  );
+                  var postClones = Object(
+                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                      "getPostClones"
+                    ]
+                  )(
+                    _objectSpread({}, _this.props, {}, _this.state, {
+                      slideCount: _this.props.children.length
+                    })
+                  );
+
+                  _this.props.children.forEach(function(child) {
+                    childrenWidths.push(child.props.style.width);
+                    _trackWidth += child.props.style.width;
+                  });
+
+                  for (var i = 0; i < preClones; i++) {
+                    _trackLeft += childrenWidths[childrenWidths.length - 1 - i];
+                    _trackWidth +=
+                      childrenWidths[childrenWidths.length - 1 - i];
+                  }
+
+                  for (var _i2 = 0; _i2 < postClones; _i2++) {
+                    _trackWidth += childrenWidths[_i2];
+                  }
+
+                  for (var _i3 = 0; _i3 < _this.state.currentSlide; _i3++) {
+                    _trackLeft += childrenWidths[_i3];
+                  }
+
+                  var _trackStyle = {
+                    width: _trackWidth + "px",
+                    left: -_trackLeft + "px"
+                  };
+
+                  if (_this.props.centerMode) {
+                    var currentWidth = "".concat(
+                      childrenWidths[_this.state.currentSlide],
+                      "px"
+                    );
+                    _trackStyle.left = "calc("
+                      .concat(_trackStyle.left, " + (100% - ")
+                      .concat(currentWidth, ") / 2 ) ");
+                  }
+
+                  _this.setState({
+                    trackStyle: _trackStyle
+                  });
+
+                  return;
+                }
+
+                var childrenCount = react__WEBPACK_IMPORTED_MODULE_0___default.a.Children.count(
+                  _this.props.children
+                );
+
+                var spec = _objectSpread({}, _this.props, {}, _this.state, {
+                  slideCount: childrenCount
+                });
+
+                var slideCount =
+                  Object(
+                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                      "getPreClones"
+                    ]
+                  )(spec) +
+                  Object(
+                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                      "getPostClones"
+                    ]
+                  )(spec) +
+                  childrenCount;
+                var trackWidth = (100 / _this.props.slidesToShow) * slideCount;
+                var slideWidth = 100 / slideCount;
+                var trackLeft =
+                  (-slideWidth *
+                    (Object(
+                      _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                        "getPreClones"
+                      ]
+                    )(spec) +
+                      _this.state.currentSlide) *
+                    trackWidth) /
+                  100;
+
+                if (_this.props.centerMode) {
+                  trackLeft += (100 - (slideWidth * trackWidth) / 100) / 2;
+                }
+
+                var trackStyle = {
+                  width: trackWidth + "%",
+                  left: trackLeft + "%"
+                };
+
+                _this.setState({
+                  slideWidth: slideWidth + "%",
+                  trackStyle: trackStyle
+                });
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "onClickImage",
+              function(image) {
+                if (!image.onclick) {
+                  image.onclick = function() {
+                    return image.parentNode.focus();
+                  };
+                } else {
+                  var prevClickHandler = image.onclick;
+
+                  image.onclick = function() {
+                    prevClickHandler();
+                    image.parentNode.focus();
+                  };
+                }
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "onLoadImage",
+              function(image, handler) {
+                if (!image.onload) {
+                  if (_this.props.lazyLoad) {
+                    image.onload = function() {
+                      _this.adaptHeight();
+
+                      _this.callbackTimers.push(
+                        setTimeout(_this.onWindowResized, _this.props.speed)
+                      );
+                    };
+                  } else {
+                    image.onload = handler;
+
+                    image.onerror = function() {
+                      handler();
+                      _this.props.onLazyLoadError &&
+                        _this.props.onLazyLoadError();
+                    };
+                  }
+                }
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "checkImagesLoad",
+              function() {
+                var images = document.querySelectorAll(".slick-slide img");
+                var imagesCount = images.length,
+                  loadedCount = 0;
+
+                var handler = function handler() {
+                  return (
+                    ++loadedCount &&
+                    loadedCount >= imagesCount &&
+                    _this.onWindowResized()
+                  );
+                };
+
+                Array.prototype.forEach.call(images, function(image) {
+                  image.onclick = _this.onClickImage.bind(image);
+                  image.onload = _this.onLoadImage.bind(image, handler);
+                });
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "progressiveLazyLoad",
+              function() {
+                var slidesToLoad = [];
+
+                var spec = _objectSpread({}, _this.props, {}, _this.state);
+
+                for (
+                  var index = _this.state.currentSlide;
+                  index <
+                  _this.state.slideCount +
+                    Object(
+                      _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                        "getPostClones"
+                      ]
+                    )(spec);
+                  index++
+                ) {
+                  if (_this.state.lazyLoadedList.indexOf(index) < 0) {
+                    slidesToLoad.push(index);
+                    break;
+                  }
+                }
+
+                for (
+                  var _index = _this.state.currentSlide - 1;
+                  _index >=
+                  -Object(
+                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                      "getPreClones"
+                    ]
+                  )(spec);
+                  _index--
+                ) {
+                  if (_this.state.lazyLoadedList.indexOf(_index) < 0) {
+                    slidesToLoad.push(_index);
+                    break;
+                  }
+                }
+
+                if (slidesToLoad.length > 0) {
+                  _this.setState(function(state) {
+                    return {
+                      lazyLoadedList: state.lazyLoadedList.concat(slidesToLoad)
+                    };
+                  });
+
+                  if (_this.props.onLazyLoad) {
+                    _this.props.onLazyLoad(slidesToLoad);
+                  }
+                } else {
+                  if (_this.lazyLoadTimer) {
+                    clearInterval(_this.lazyLoadTimer);
+                    delete _this.lazyLoadTimer;
+                  }
+                }
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "slideHandler",
+              function(index) {
+                var dontAnimate =
+                  arguments.length > 1 && arguments[1] !== undefined
+                    ? arguments[1]
+                    : false;
+                var _this$props = _this.props,
+                  asNavFor = _this$props.asNavFor,
+                  beforeChange = _this$props.beforeChange,
+                  onLazyLoad = _this$props.onLazyLoad,
+                  speed = _this$props.speed,
+                  afterChange = _this$props.afterChange; // capture currentslide before state is updated
+
+                var currentSlide = _this.state.currentSlide;
+
+                var _slideHandler = Object(
+                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                      "slideHandler"
+                    ]
+                  )(
+                    _objectSpread(
+                      {
+                        index: index
+                      },
+                      _this.props,
+                      {},
+                      _this.state,
+                      {
+                        trackRef: _this.track,
+                        useCSS: _this.props.useCSS && !dontAnimate
+                      }
+                    )
+                  ),
+                  state = _slideHandler.state,
+                  nextState = _slideHandler.nextState;
+
+                if (!state) return;
+                beforeChange && beforeChange(currentSlide, state.currentSlide);
+                var slidesToLoad = state.lazyLoadedList.filter(function(value) {
+                  return _this.state.lazyLoadedList.indexOf(value) < 0;
+                });
+                onLazyLoad &&
+                  slidesToLoad.length > 0 &&
+                  onLazyLoad(slidesToLoad);
+
+                _this.setState(state, function() {
+                  asNavFor && asNavFor.innerSlider.slideHandler(index);
+                  if (!nextState) return;
+                  _this.animationEndCallback = setTimeout(function() {
+                    var animating = nextState.animating,
+                      firstBatch = _objectWithoutProperties(nextState, [
+                        "animating"
+                      ]);
+
+                    _this.setState(firstBatch, function() {
+                      _this.callbackTimers.push(
+                        setTimeout(function() {
+                          return _this.setState({
+                            animating: animating
+                          });
+                        }, 10)
+                      );
+
+                      afterChange && afterChange(state.currentSlide);
+                      delete _this.animationEndCallback;
+                    });
+                  }, speed);
+                });
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "changeSlide",
+              function(options) {
+                var dontAnimate =
+                  arguments.length > 1 && arguments[1] !== undefined
+                    ? arguments[1]
+                    : false;
+
+                var spec = _objectSpread({}, _this.props, {}, _this.state);
+
+                var targetSlide = Object(
+                  _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                    "changeSlide"
+                  ]
+                )(spec, options);
+                if (targetSlide !== 0 && !targetSlide) return;
+
+                if (dontAnimate === true) {
+                  _this.slideHandler(targetSlide, dontAnimate);
+                } else {
+                  _this.slideHandler(targetSlide);
+                }
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "clickHandler",
+              function(e) {
+                if (_this.clickable === false) {
+                  e.stopPropagation();
+                  e.preventDefault();
+                }
+
+                _this.clickable = true;
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "keyHandler",
+              function(e) {
+                var dir = Object(
+                  _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                    "keyHandler"
+                  ]
+                )(e, _this.props.accessibility, _this.props.rtl);
+                dir !== "" &&
+                  _this.changeSlide({
+                    message: dir
+                  });
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "selectHandler",
+              function(options) {
+                _this.changeSlide(options);
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "disableBodyScroll",
+              function() {
+                var preventDefault = function preventDefault(e) {
+                  e = e || window.event;
+                  if (e.preventDefault) e.preventDefault();
+                  e.returnValue = false;
+                };
+
+                window.ontouchmove = preventDefault;
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "enableBodyScroll",
+              function() {
+                window.ontouchmove = null;
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "swipeStart",
+              function(e) {
+                if (_this.props.verticalSwiping) {
+                  _this.disableBodyScroll();
+                }
+
+                var state = Object(
+                  _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                    "swipeStart"
+                  ]
+                )(e, _this.props.swipe, _this.props.draggable);
+                state !== "" && _this.setState(state);
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "swipeMove",
+              function(e) {
+                var state = Object(
+                  _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                    "swipeMove"
+                  ]
+                )(
+                  e,
+                  _objectSpread({}, _this.props, {}, _this.state, {
+                    trackRef: _this.track,
+                    listRef: _this.list,
+                    slideIndex: _this.state.currentSlide
+                  })
+                );
+                if (!state) return;
+
+                if (state["swiping"]) {
+                  _this.clickable = false;
+                }
+
+                _this.setState(state);
+              }
+            );
+
+            _defineProperty(_assertThisInitialized(_this), "swipeEnd", function(
+              e
+            ) {
+              var state = Object(
+                _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__["swipeEnd"]
+              )(
+                e,
+                _objectSpread({}, _this.props, {}, _this.state, {
+                  trackRef: _this.track,
+                  listRef: _this.list,
+                  slideIndex: _this.state.currentSlide
+                })
+              );
+              if (!state) return;
+              var triggerSlideHandler = state["triggerSlideHandler"];
+              delete state["triggerSlideHandler"];
+
+              _this.setState(state);
+
+              if (triggerSlideHandler === undefined) return;
+
+              _this.slideHandler(triggerSlideHandler);
+
+              if (_this.props.verticalSwiping) {
+                _this.enableBodyScroll();
+              }
+            });
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "slickPrev",
+              function() {
+                // this and fellow methods are wrapped in setTimeout
+                // to make sure initialize setState has happened before
+                // any of such methods are called
+                _this.callbackTimers.push(
+                  setTimeout(function() {
+                    return _this.changeSlide({
+                      message: "previous"
+                    });
+                  }, 0)
+                );
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "slickNext",
+              function() {
+                _this.callbackTimers.push(
+                  setTimeout(function() {
+                    return _this.changeSlide({
+                      message: "next"
+                    });
+                  }, 0)
+                );
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "slickGoTo",
+              function(slide) {
+                var dontAnimate =
+                  arguments.length > 1 && arguments[1] !== undefined
+                    ? arguments[1]
+                    : false;
+                slide = Number(slide);
+                if (isNaN(slide)) return "";
+
+                _this.callbackTimers.push(
+                  setTimeout(function() {
+                    return _this.changeSlide(
+                      {
+                        message: "index",
+                        index: slide,
+                        currentSlide: _this.state.currentSlide
+                      },
+                      dontAnimate
+                    );
+                  }, 0)
+                );
+              }
+            );
+
+            _defineProperty(_assertThisInitialized(_this), "play", function() {
+              var nextIndex;
+
+              if (_this.props.rtl) {
+                nextIndex =
+                  _this.state.currentSlide - _this.props.slidesToScroll;
+              } else {
+                if (
+                  Object(
+                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                      "canGoNext"
+                    ]
+                  )(_objectSpread({}, _this.props, {}, _this.state))
+                ) {
+                  nextIndex =
+                    _this.state.currentSlide + _this.props.slidesToScroll;
+                } else {
+                  return false;
+                }
+              }
+
+              _this.slideHandler(nextIndex);
+            });
+
+            _defineProperty(_assertThisInitialized(_this), "autoPlay", function(
+              playType
+            ) {
+              if (_this.autoplayTimer) {
+                clearInterval(_this.autoplayTimer);
+              }
+
+              var autoplaying = _this.state.autoplaying;
+
+              if (playType === "update") {
+                if (
+                  autoplaying === "hovered" ||
+                  autoplaying === "focused" ||
+                  autoplaying === "paused"
+                ) {
+                  return;
+                }
+              } else if (playType === "leave") {
+                if (autoplaying === "paused" || autoplaying === "focused") {
+                  return;
+                }
+              } else if (playType === "blur") {
+                if (autoplaying === "paused" || autoplaying === "hovered") {
+                  return;
+                }
+              }
+
+              _this.autoplayTimer = setInterval(
+                _this.play,
+                _this.props.autoplaySpeed + 50
+              );
+
+              _this.setState({
+                autoplaying: "playing"
+              });
+            });
+
+            _defineProperty(_assertThisInitialized(_this), "pause", function(
+              pauseType
+            ) {
+              if (_this.autoplayTimer) {
+                clearInterval(_this.autoplayTimer);
+                _this.autoplayTimer = null;
+              }
+
+              var autoplaying = _this.state.autoplaying;
+
+              if (pauseType === "paused") {
+                _this.setState({
+                  autoplaying: "paused"
+                });
+              } else if (pauseType === "focused") {
+                if (autoplaying === "hovered" || autoplaying === "playing") {
+                  _this.setState({
+                    autoplaying: "focused"
+                  });
+                }
+              } else {
+                // pauseType  is 'hovered'
+                if (autoplaying === "playing") {
+                  _this.setState({
+                    autoplaying: "hovered"
+                  });
+                }
+              }
+            });
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "onDotsOver",
+              function() {
+                return _this.props.autoplay && _this.pause("hovered");
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "onDotsLeave",
+              function() {
+                return (
+                  _this.props.autoplay &&
+                  _this.state.autoplaying === "hovered" &&
+                  _this.autoPlay("leave")
+                );
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "onTrackOver",
+              function() {
+                return _this.props.autoplay && _this.pause("hovered");
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "onTrackLeave",
+              function() {
+                return (
+                  _this.props.autoplay &&
+                  _this.state.autoplaying === "hovered" &&
+                  _this.autoPlay("leave")
+                );
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "onSlideFocus",
+              function() {
+                return _this.props.autoplay && _this.pause("focused");
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "onSlideBlur",
+              function() {
+                return (
+                  _this.props.autoplay &&
+                  _this.state.autoplaying === "focused" &&
+                  _this.autoPlay("blur")
+                );
+              }
+            );
+
+            _defineProperty(
+              _assertThisInitialized(_this),
+              "render",
+              function() {
+                var className = classnames__WEBPACK_IMPORTED_MODULE_4___default()(
+                  "slick-slider",
+                  _this.props.className,
+                  {
+                    "slick-vertical": _this.props.vertical,
+                    "slick-initialized": true
+                  }
+                );
+
+                var spec = _objectSpread({}, _this.props, {}, _this.state);
+
+                var trackProps = Object(
+                  _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                    "extractObject"
+                  ]
+                )(spec, [
+                  "fade",
+                  "cssEase",
+                  "speed",
+                  "infinite",
+                  "centerMode",
+                  "focusOnSelect",
+                  "currentSlide",
+                  "lazyLoad",
+                  "lazyLoadedList",
+                  "rtl",
+                  "slideWidth",
+                  "slideHeight",
+                  "listHeight",
+                  "vertical",
+                  "slidesToShow",
+                  "slidesToScroll",
+                  "slideCount",
+                  "trackStyle",
+                  "variableWidth",
+                  "unslick",
+                  "centerPadding"
+                ]);
+                var pauseOnHover = _this.props.pauseOnHover;
+                trackProps = _objectSpread({}, trackProps, {
+                  onMouseEnter: pauseOnHover ? _this.onTrackOver : null,
+                  onMouseLeave: pauseOnHover ? _this.onTrackLeave : null,
+                  onMouseOver: pauseOnHover ? _this.onTrackOver : null,
+                  focusOnSelect: _this.props.focusOnSelect
+                    ? _this.selectHandler
+                    : null
+                });
+                var dots;
+
+                if (
+                  _this.props.dots === true &&
+                  _this.state.slideCount >= _this.props.slidesToShow
+                ) {
+                  var dotProps = Object(
                     _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
                       "extractObject"
                     ]
                   )(spec, [
-                    "infinite",
-                    "centerMode",
-                    "currentSlide",
+                    "dotsClass",
                     "slideCount",
                     "slidesToShow",
-                    "prevArrow",
-                    "nextArrow"
+                    "currentSlide",
+                    "slidesToScroll",
+                    "clickHandler",
+                    "children",
+                    "customPaging",
+                    "infinite",
+                    "appendDots"
                   ]);
-                  arrowProps.clickHandler = _this.changeSlide;
-
-                  if (_this.props.arrows) {
-                    prevArrow = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                      _arrows__WEBPACK_IMPORTED_MODULE_8__["PrevArrow"],
-                      arrowProps
-                    );
-                    nextArrow = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                      _arrows__WEBPACK_IMPORTED_MODULE_8__["NextArrow"],
-                      arrowProps
-                    );
-                  }
-
-                  var verticalHeightStyle = null;
-
-                  if (_this.props.vertical) {
-                    verticalHeightStyle = {
-                      height: _this.state.listHeight
-                    };
-                  }
-
-                  var centerPaddingStyle = null;
-
-                  if (_this.props.vertical === false) {
-                    if (_this.props.centerMode === true) {
-                      centerPaddingStyle = {
-                        padding: "0px " + _this.props.centerPadding
-                      };
-                    }
-                  } else {
-                    if (_this.props.centerMode === true) {
-                      centerPaddingStyle = {
-                        padding: _this.props.centerPadding + " 0px"
-                      };
-                    }
-                  }
-
-                  var listStyle = _objectSpread(
-                    {},
-                    verticalHeightStyle,
-                    {},
-                    centerPaddingStyle
+                  var pauseOnDotsHover = _this.props.pauseOnDotsHover;
+                  dotProps = _objectSpread({}, dotProps, {
+                    clickHandler: _this.changeSlide,
+                    onMouseEnter: pauseOnDotsHover ? _this.onDotsLeave : null,
+                    onMouseOver: pauseOnDotsHover ? _this.onDotsOver : null,
+                    onMouseLeave: pauseOnDotsHover ? _this.onDotsLeave : null
+                  });
+                  dots = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                    _dots__WEBPACK_IMPORTED_MODULE_7__["Dots"],
+                    dotProps
                   );
+                }
 
-                  var touchMove = _this.props.touchMove;
-                  var listProps = {
-                    className: "slick-list",
-                    style: listStyle,
-                    onClick: _this.clickHandler,
-                    onMouseDown: touchMove ? _this.swipeStart : null,
-                    onMouseMove:
-                      _this.state.dragging && touchMove
-                        ? _this.swipeMove
-                        : null,
-                    onMouseUp: touchMove ? _this.swipeEnd : null,
-                    onMouseLeave:
-                      _this.state.dragging && touchMove ? _this.swipeEnd : null,
-                    onTouchStart: touchMove ? _this.swipeStart : null,
-                    onTouchMove:
-                      _this.state.dragging && touchMove
-                        ? _this.swipeMove
-                        : null,
-                    onTouchEnd: touchMove ? _this.swipeEnd : null,
-                    onTouchCancel:
-                      _this.state.dragging && touchMove ? _this.swipeEnd : null,
-                    onKeyDown: _this.props.accessibility
-                      ? _this.keyHandler
-                      : null
-                  };
-                  var innerSliderProps = {
-                    className: className,
-                    dir: "ltr",
-                    style: _this.props.style
-                  };
+                var prevArrow, nextArrow;
+                var arrowProps = Object(
+                  _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
+                    "extractObject"
+                  ]
+                )(spec, [
+                  "infinite",
+                  "centerMode",
+                  "currentSlide",
+                  "slideCount",
+                  "slidesToShow",
+                  "prevArrow",
+                  "nextArrow"
+                ]);
+                arrowProps.clickHandler = _this.changeSlide;
 
-                  if (_this.props.unslick) {
-                    listProps = {
-                      className: "slick-list"
-                    };
-                    innerSliderProps = {
-                      className: className
+                if (_this.props.arrows) {
+                  prevArrow = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                    _arrows__WEBPACK_IMPORTED_MODULE_8__["PrevArrow"],
+                    arrowProps
+                  );
+                  nextArrow = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                    _arrows__WEBPACK_IMPORTED_MODULE_8__["NextArrow"],
+                    arrowProps
+                  );
+                }
+
+                var verticalHeightStyle = null;
+
+                if (_this.props.vertical) {
+                  verticalHeightStyle = {
+                    height: _this.state.listHeight
+                  };
+                }
+
+                var centerPaddingStyle = null;
+
+                if (_this.props.vertical === false) {
+                  if (_this.props.centerMode === true) {
+                    centerPaddingStyle = {
+                      padding: "0px " + _this.props.centerPadding
                     };
                   }
+                } else {
+                  if (_this.props.centerMode === true) {
+                    centerPaddingStyle = {
+                      padding: _this.props.centerPadding + " 0px"
+                    };
+                  }
+                }
 
-                  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                var listStyle = _objectSpread(
+                  {},
+                  verticalHeightStyle,
+                  {},
+                  centerPaddingStyle
+                );
+
+                var touchMove = _this.props.touchMove;
+                var listProps = {
+                  className: "slick-list",
+                  style: listStyle,
+                  onClick: _this.clickHandler,
+                  onMouseDown: touchMove ? _this.swipeStart : null,
+                  onMouseMove:
+                    _this.state.dragging && touchMove ? _this.swipeMove : null,
+                  onMouseUp: touchMove ? _this.swipeEnd : null,
+                  onMouseLeave:
+                    _this.state.dragging && touchMove ? _this.swipeEnd : null,
+                  onTouchStart: touchMove ? _this.swipeStart : null,
+                  onTouchMove:
+                    _this.state.dragging && touchMove ? _this.swipeMove : null,
+                  onTouchEnd: touchMove ? _this.swipeEnd : null,
+                  onTouchCancel:
+                    _this.state.dragging && touchMove ? _this.swipeEnd : null,
+                  onKeyDown: _this.props.accessibility ? _this.keyHandler : null
+                };
+                var innerSliderProps = {
+                  className: className,
+                  dir: "ltr",
+                  style: _this.props.style
+                };
+
+                if (_this.props.unslick) {
+                  listProps = {
+                    className: "slick-list"
+                  };
+                  innerSliderProps = {
+                    className: className
+                  };
+                }
+
+                return /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                  "div",
+                  innerSliderProps,
+                  !_this.props.unslick ? prevArrow : "",
+                  /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
                     "div",
-                    innerSliderProps,
-                    !_this.props.unslick ? prevArrow : "",
-                    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                      "div",
+                    _extends(
+                      {
+                        ref: _this.listRefHandler
+                      },
+                      listProps
+                    ),
+                    /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                      _track__WEBPACK_IMPORTED_MODULE_6__["Track"],
                       _extends(
                         {
-                          ref: _this.listRefHandler
+                          ref: _this.trackRefHandler
                         },
-                        listProps
+                        trackProps
                       ),
-                      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                        _track__WEBPACK_IMPORTED_MODULE_6__["Track"],
-                        _extends(
-                          {
-                            ref: _this.trackRefHandler
-                          },
-                          trackProps
-                        ),
-                        _this.props.children
-                      )
-                    ),
-                    !_this.props.unslick ? nextArrow : "",
-                    !_this.props.unslick ? dots : ""
-                  );
-                }
-              );
+                      _this.props.children
+                    )
+                  ),
+                  !_this.props.unslick ? nextArrow : "",
+                  !_this.props.unslick ? dots : ""
+                );
+              }
+            );
 
-              _this.list = null;
-              _this.track = null;
-              _this.state = _objectSpread(
-                {},
-                _initial_state__WEBPACK_IMPORTED_MODULE_2__["default"],
-                {
-                  currentSlide: _this.props.initialSlide,
-                  slideCount: react__WEBPACK_IMPORTED_MODULE_0___default.a.Children.count(
-                    _this.props.children
-                  )
-                }
-              );
-              _this.callbackTimers = [];
-              _this.clickable = true;
-              _this.debouncedResize = null;
-              return _this;
-            }
+            _this.list = null;
+            _this.track = null;
+            _this.state = _objectSpread(
+              {},
+              _initial_state__WEBPACK_IMPORTED_MODULE_2__["default"],
+              {
+                currentSlide: _this.props.initialSlide,
+                slideCount: react__WEBPACK_IMPORTED_MODULE_0___default.a.Children.count(
+                  _this.props.children
+                )
+              }
+            );
+            _this.callbackTimers = [];
+            _this.clickable = true;
+            _this.debouncedResize = null;
+            return _this;
+          }
 
-            return InnerSlider;
-          })(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+          return InnerSlider;
+        })(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
         /***/
       },
@@ -3070,7 +3091,7 @@
           for (var i = 1; i < arguments.length; i++) {
             var source = arguments[i] != null ? arguments[i] : {};
             if (i % 2) {
-              ownKeys(source, true).forEach(function(key) {
+              ownKeys(Object(source), true).forEach(function(key) {
                 _defineProperty(target, key, source[key]);
               });
             } else if (Object.getOwnPropertyDescriptors) {
@@ -3079,7 +3100,7 @@
                 Object.getOwnPropertyDescriptors(source)
               );
             } else {
-              ownKeys(source).forEach(function(key) {
+              ownKeys(Object(source)).forEach(function(key) {
                 Object.defineProperty(
                   target,
                   key,
@@ -4133,6 +4154,7 @@
         );
 
         function _typeof(obj) {
+          "@babel/helpers - typeof";
           if (
             typeof Symbol === "function" &&
             typeof Symbol.iterator === "symbol"
@@ -4192,34 +4214,6 @@
           return Constructor;
         }
 
-        function _possibleConstructorReturn(self, call) {
-          if (
-            call &&
-            (_typeof(call) === "object" || typeof call === "function")
-          ) {
-            return call;
-          }
-          return _assertThisInitialized(self);
-        }
-
-        function _assertThisInitialized(self) {
-          if (self === void 0) {
-            throw new ReferenceError(
-              "this hasn't been initialised - super() hasn't been called"
-            );
-          }
-          return self;
-        }
-
-        function _getPrototypeOf(o) {
-          _getPrototypeOf = Object.setPrototypeOf
-            ? Object.getPrototypeOf
-            : function _getPrototypeOf(o) {
-                return o.__proto__ || Object.getPrototypeOf(o);
-              };
-          return _getPrototypeOf(o);
-        }
-
         function _inherits(subClass, superClass) {
           if (typeof superClass !== "function" && superClass !== null) {
             throw new TypeError(
@@ -4249,6 +4243,63 @@
           return _setPrototypeOf(o, p);
         }
 
+        function _createSuper(Derived) {
+          return function() {
+            var Super = _getPrototypeOf(Derived),
+              result;
+            if (_isNativeReflectConstruct()) {
+              var NewTarget = _getPrototypeOf(this).constructor;
+              result = Reflect.construct(Super, arguments, NewTarget);
+            } else {
+              result = Super.apply(this, arguments);
+            }
+            return _possibleConstructorReturn(this, result);
+          };
+        }
+
+        function _possibleConstructorReturn(self, call) {
+          if (
+            call &&
+            (_typeof(call) === "object" || typeof call === "function")
+          ) {
+            return call;
+          }
+          return _assertThisInitialized(self);
+        }
+
+        function _assertThisInitialized(self) {
+          if (self === void 0) {
+            throw new ReferenceError(
+              "this hasn't been initialised - super() hasn't been called"
+            );
+          }
+          return self;
+        }
+
+        function _isNativeReflectConstruct() {
+          if (typeof Reflect === "undefined" || !Reflect.construct)
+            return false;
+          if (Reflect.construct.sham) return false;
+          if (typeof Proxy === "function") return true;
+          try {
+            Date.prototype.toString.call(
+              Reflect.construct(Date, [], function() {})
+            );
+            return true;
+          } catch (e) {
+            return false;
+          }
+        }
+
+        function _getPrototypeOf(o) {
+          _getPrototypeOf = Object.setPrototypeOf
+            ? Object.getPrototypeOf
+            : function _getPrototypeOf(o) {
+                return o.__proto__ || Object.getPrototypeOf(o);
+              };
+          return _getPrototypeOf(o);
+        }
+
         function ownKeys(object, enumerableOnly) {
           var keys = Object.keys(object);
           if (Object.getOwnPropertySymbols) {
@@ -4266,7 +4317,7 @@
           for (var i = 1; i < arguments.length; i++) {
             var source = arguments[i] != null ? arguments[i] : {};
             if (i % 2) {
-              ownKeys(source, true).forEach(function(key) {
+              ownKeys(Object(source), true).forEach(function(key) {
                 _defineProperty(target, key, source[key]);
               });
             } else if (Object.getOwnPropertyDescriptors) {
@@ -4275,7 +4326,7 @@
                 Object.getOwnPropertyDescriptors(source)
               );
             } else {
-              ownKeys(source).forEach(function(key) {
+              ownKeys(Object(source)).forEach(function(key) {
                 Object.defineProperty(
                   target,
                   key,
@@ -4423,7 +4474,7 @@
               ) {
                 child = elem;
               } else {
-                child = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                child = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
                   "div",
                   null
                 );
@@ -4583,51 +4634,48 @@
           }
         };
 
-        var Track =
-          /*#__PURE__*/
-          (function(_React$PureComponent) {
-            _inherits(Track, _React$PureComponent);
+        var Track = /*#__PURE__*/ (function(_React$PureComponent) {
+          _inherits(Track, _React$PureComponent);
 
-            function Track() {
-              _classCallCheck(this, Track);
+          var _super = _createSuper(Track);
 
-              return _possibleConstructorReturn(
-                this,
-                _getPrototypeOf(Track).apply(this, arguments)
-              );
-            }
+          function Track() {
+            _classCallCheck(this, Track);
 
-            _createClass(Track, [
-              {
-                key: "render",
-                value: function render() {
-                  var slides = renderSlides(this.props);
-                  var _this$props = this.props,
-                    onMouseEnter = _this$props.onMouseEnter,
-                    onMouseOver = _this$props.onMouseOver,
-                    onMouseLeave = _this$props.onMouseLeave;
-                  var mouseEvents = {
-                    onMouseEnter: onMouseEnter,
-                    onMouseOver: onMouseOver,
-                    onMouseLeave: onMouseLeave
-                  };
-                  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                    "div",
-                    _extends(
-                      {
-                        className: "slick-track",
-                        style: this.props.trackStyle
-                      },
-                      mouseEvents
-                    ),
-                    slides
-                  );
-                }
+            return _super.apply(this, arguments);
+          }
+
+          _createClass(Track, [
+            {
+              key: "render",
+              value: function render() {
+                var slides = renderSlides(this.props);
+                var _this$props = this.props,
+                  onMouseEnter = _this$props.onMouseEnter,
+                  onMouseOver = _this$props.onMouseOver,
+                  onMouseLeave = _this$props.onMouseLeave;
+                var mouseEvents = {
+                  onMouseEnter: onMouseEnter,
+                  onMouseOver: onMouseOver,
+                  onMouseLeave: onMouseLeave
+                };
+                return /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                  "div",
+                  _extends(
+                    {
+                      className: "slick-track",
+                      style: this.props.trackStyle
+                    },
+                    mouseEvents
+                  ),
+                  slides
+                );
               }
-            ]);
+            }
+          ]);
 
-            return Track;
-          })(react__WEBPACK_IMPORTED_MODULE_0___default.a.PureComponent);
+          return Track;
+        })(react__WEBPACK_IMPORTED_MODULE_0___default.a.PureComponent);
 
         /***/
       },
@@ -4656,6 +4704,7 @@
         );
 
         function _typeof(obj) {
+          "@babel/helpers - typeof";
           if (
             typeof Symbol === "function" &&
             typeof Symbol.iterator === "symbol"
@@ -4693,7 +4742,7 @@
           for (var i = 1; i < arguments.length; i++) {
             var source = arguments[i] != null ? arguments[i] : {};
             if (i % 2) {
-              ownKeys(source, true).forEach(function(key) {
+              ownKeys(Object(source), true).forEach(function(key) {
                 _defineProperty(target, key, source[key]);
               });
             } else if (Object.getOwnPropertyDescriptors) {
@@ -4702,7 +4751,7 @@
                 Object.getOwnPropertyDescriptors(source)
               );
             } else {
-              ownKeys(source).forEach(function(key) {
+              ownKeys(Object(source)).forEach(function(key) {
                 Object.defineProperty(
                   target,
                   key,
@@ -4750,34 +4799,6 @@
           return Constructor;
         }
 
-        function _possibleConstructorReturn(self, call) {
-          if (
-            call &&
-            (_typeof(call) === "object" || typeof call === "function")
-          ) {
-            return call;
-          }
-          return _assertThisInitialized(self);
-        }
-
-        function _assertThisInitialized(self) {
-          if (self === void 0) {
-            throw new ReferenceError(
-              "this hasn't been initialised - super() hasn't been called"
-            );
-          }
-          return self;
-        }
-
-        function _getPrototypeOf(o) {
-          _getPrototypeOf = Object.setPrototypeOf
-            ? Object.getPrototypeOf
-            : function _getPrototypeOf(o) {
-                return o.__proto__ || Object.getPrototypeOf(o);
-              };
-          return _getPrototypeOf(o);
-        }
-
         function _inherits(subClass, superClass) {
           if (typeof superClass !== "function" && superClass !== null) {
             throw new TypeError(
@@ -4807,6 +4828,63 @@
           return _setPrototypeOf(o, p);
         }
 
+        function _createSuper(Derived) {
+          return function() {
+            var Super = _getPrototypeOf(Derived),
+              result;
+            if (_isNativeReflectConstruct()) {
+              var NewTarget = _getPrototypeOf(this).constructor;
+              result = Reflect.construct(Super, arguments, NewTarget);
+            } else {
+              result = Super.apply(this, arguments);
+            }
+            return _possibleConstructorReturn(this, result);
+          };
+        }
+
+        function _possibleConstructorReturn(self, call) {
+          if (
+            call &&
+            (_typeof(call) === "object" || typeof call === "function")
+          ) {
+            return call;
+          }
+          return _assertThisInitialized(self);
+        }
+
+        function _assertThisInitialized(self) {
+          if (self === void 0) {
+            throw new ReferenceError(
+              "this hasn't been initialised - super() hasn't been called"
+            );
+          }
+          return self;
+        }
+
+        function _isNativeReflectConstruct() {
+          if (typeof Reflect === "undefined" || !Reflect.construct)
+            return false;
+          if (Reflect.construct.sham) return false;
+          if (typeof Proxy === "function") return true;
+          try {
+            Date.prototype.toString.call(
+              Reflect.construct(Date, [], function() {})
+            );
+            return true;
+          } catch (e) {
+            return false;
+          }
+        }
+
+        function _getPrototypeOf(o) {
+          _getPrototypeOf = Object.setPrototypeOf
+            ? Object.getPrototypeOf
+            : function _getPrototypeOf(o) {
+                return o.__proto__ || Object.getPrototypeOf(o);
+              };
+          return _getPrototypeOf(o);
+        }
+
         var getDotCount = function getDotCount(spec) {
           var dots;
 
@@ -4822,108 +4900,105 @@
           return dots;
         };
 
-        var Dots =
-          /*#__PURE__*/
-          (function(_React$PureComponent) {
-            _inherits(Dots, _React$PureComponent);
+        var Dots = /*#__PURE__*/ (function(_React$PureComponent) {
+          _inherits(Dots, _React$PureComponent);
 
-            function Dots() {
-              _classCallCheck(this, Dots);
+          var _super = _createSuper(Dots);
 
-              return _possibleConstructorReturn(
-                this,
-                _getPrototypeOf(Dots).apply(this, arguments)
-              );
-            }
+          function Dots() {
+            _classCallCheck(this, Dots);
 
-            _createClass(Dots, [
-              {
-                key: "clickHandler",
-                value: function clickHandler(options, e) {
-                  // In Autoplay the focus stays on clicked button even after transition
-                  // to next slide. That only goes away by click somewhere outside
-                  e.preventDefault();
-                  this.props.clickHandler(options);
-                }
-              },
-              {
-                key: "render",
-                value: function render() {
-                  var _this = this;
+            return _super.apply(this, arguments);
+          }
 
-                  var dotCount = getDotCount({
-                    slideCount: this.props.slideCount,
-                    slidesToScroll: this.props.slidesToScroll,
-                    slidesToShow: this.props.slidesToShow,
-                    infinite: this.props.infinite
-                  }); // Apply join & split to Array to pre-fill it for IE8
-                  //
-                  // Credit: http://stackoverflow.com/a/13735425/1849458
+          _createClass(Dots, [
+            {
+              key: "clickHandler",
+              value: function clickHandler(options, e) {
+                // In Autoplay the focus stays on clicked button even after transition
+                // to next slide. That only goes away by click somewhere outside
+                e.preventDefault();
+                this.props.clickHandler(options);
+              }
+            },
+            {
+              key: "render",
+              value: function render() {
+                var _this = this;
 
-                  var _this$props = this.props,
-                    onMouseEnter = _this$props.onMouseEnter,
-                    onMouseOver = _this$props.onMouseOver,
-                    onMouseLeave = _this$props.onMouseLeave;
-                  var mouseEvents = {
-                    onMouseEnter: onMouseEnter,
-                    onMouseOver: onMouseOver,
-                    onMouseLeave: onMouseLeave
+                var dotCount = getDotCount({
+                  slideCount: this.props.slideCount,
+                  slidesToScroll: this.props.slidesToScroll,
+                  slidesToShow: this.props.slidesToShow,
+                  infinite: this.props.infinite
+                }); // Apply join & split to Array to pre-fill it for IE8
+                //
+                // Credit: http://stackoverflow.com/a/13735425/1849458
+
+                var _this$props = this.props,
+                  onMouseEnter = _this$props.onMouseEnter,
+                  onMouseOver = _this$props.onMouseOver,
+                  onMouseLeave = _this$props.onMouseLeave;
+                var mouseEvents = {
+                  onMouseEnter: onMouseEnter,
+                  onMouseOver: onMouseOver,
+                  onMouseLeave: onMouseLeave
+                };
+                var dots = Array.apply(
+                  null,
+                  Array(dotCount + 1)
+                    .join("0")
+                    .split("")
+                ).map(function(x, i) {
+                  var leftBound = i * _this.props.slidesToScroll;
+                  var rightBound =
+                    i * _this.props.slidesToScroll +
+                    (_this.props.slidesToScroll - 1);
+                  var className = classnames__WEBPACK_IMPORTED_MODULE_1___default()(
+                    {
+                      "slick-active":
+                        _this.props.currentSlide >= leftBound &&
+                        _this.props.currentSlide <= rightBound
+                    }
+                  );
+                  var dotOptions = {
+                    message: "dots",
+                    index: i,
+                    slidesToScroll: _this.props.slidesToScroll,
+                    currentSlide: _this.props.currentSlide
                   };
-                  var dots = Array.apply(
-                    null,
-                    Array(dotCount + 1)
-                      .join("0")
-                      .split("")
-                  ).map(function(x, i) {
-                    var leftBound = i * _this.props.slidesToScroll;
-                    var rightBound =
-                      i * _this.props.slidesToScroll +
-                      (_this.props.slidesToScroll - 1);
-                    var className = classnames__WEBPACK_IMPORTED_MODULE_1___default()(
+
+                  var onClick = _this.clickHandler.bind(_this, dotOptions);
+
+                  return /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                    "li",
+                    {
+                      key: i,
+                      className: className
+                    },
+                    react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(
+                      _this.props.customPaging(i),
                       {
-                        "slick-active":
-                          _this.props.currentSlide >= leftBound &&
-                          _this.props.currentSlide <= rightBound
+                        onClick: onClick
                       }
-                    );
-                    var dotOptions = {
-                      message: "dots",
-                      index: i,
-                      slidesToScroll: _this.props.slidesToScroll,
-                      currentSlide: _this.props.currentSlide
-                    };
-
-                    var onClick = _this.clickHandler.bind(_this, dotOptions);
-
-                    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                      "li",
-                      {
-                        key: i,
-                        className: className
-                      },
-                      react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(
-                        _this.props.customPaging(i),
-                        {
-                          onClick: onClick
-                        }
-                      )
-                    );
-                  });
-                  return react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(
-                    this.props.appendDots(dots),
-                    _objectSpread(
-                      {
-                        className: this.props.dotsClass
-                      },
-                      mouseEvents
                     )
                   );
-                }
+                });
+                return react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(
+                  this.props.appendDots(dots),
+                  _objectSpread(
+                    {
+                      className: this.props.dotsClass
+                    },
+                    mouseEvents
+                  )
+                );
               }
-            ]);
+            }
+          ]);
 
-            return Dots;
-          })(react__WEBPACK_IMPORTED_MODULE_0___default.a.PureComponent);
+          return Dots;
+        })(react__WEBPACK_IMPORTED_MODULE_0___default.a.PureComponent);
 
         /***/
       },
@@ -4962,6 +5037,7 @@
         );
 
         function _typeof(obj) {
+          "@babel/helpers - typeof";
           if (
             typeof Symbol === "function" &&
             typeof Symbol.iterator === "symbol"
@@ -5016,7 +5092,7 @@
           for (var i = 1; i < arguments.length; i++) {
             var source = arguments[i] != null ? arguments[i] : {};
             if (i % 2) {
-              ownKeys(source, true).forEach(function(key) {
+              ownKeys(Object(source), true).forEach(function(key) {
                 _defineProperty(target, key, source[key]);
               });
             } else if (Object.getOwnPropertyDescriptors) {
@@ -5025,7 +5101,7 @@
                 Object.getOwnPropertyDescriptors(source)
               );
             } else {
-              ownKeys(source).forEach(function(key) {
+              ownKeys(Object(source)).forEach(function(key) {
                 Object.defineProperty(
                   target,
                   key,
@@ -5073,34 +5149,6 @@
           return Constructor;
         }
 
-        function _possibleConstructorReturn(self, call) {
-          if (
-            call &&
-            (_typeof(call) === "object" || typeof call === "function")
-          ) {
-            return call;
-          }
-          return _assertThisInitialized(self);
-        }
-
-        function _assertThisInitialized(self) {
-          if (self === void 0) {
-            throw new ReferenceError(
-              "this hasn't been initialised - super() hasn't been called"
-            );
-          }
-          return self;
-        }
-
-        function _getPrototypeOf(o) {
-          _getPrototypeOf = Object.setPrototypeOf
-            ? Object.getPrototypeOf
-            : function _getPrototypeOf(o) {
-                return o.__proto__ || Object.getPrototypeOf(o);
-              };
-          return _getPrototypeOf(o);
-        }
-
         function _inherits(subClass, superClass) {
           if (typeof superClass !== "function" && superClass !== null) {
             throw new TypeError(
@@ -5130,186 +5178,237 @@
           return _setPrototypeOf(o, p);
         }
 
-        var PrevArrow =
-          /*#__PURE__*/
-          (function(_React$PureComponent) {
-            _inherits(PrevArrow, _React$PureComponent);
-
-            function PrevArrow() {
-              _classCallCheck(this, PrevArrow);
-
-              return _possibleConstructorReturn(
-                this,
-                _getPrototypeOf(PrevArrow).apply(this, arguments)
-              );
+        function _createSuper(Derived) {
+          return function() {
+            var Super = _getPrototypeOf(Derived),
+              result;
+            if (_isNativeReflectConstruct()) {
+              var NewTarget = _getPrototypeOf(this).constructor;
+              result = Reflect.construct(Super, arguments, NewTarget);
+            } else {
+              result = Super.apply(this, arguments);
             }
+            return _possibleConstructorReturn(this, result);
+          };
+        }
 
-            _createClass(PrevArrow, [
-              {
-                key: "clickHandler",
-                value: function clickHandler(options, e) {
-                  if (e) {
-                    e.preventDefault();
-                  }
+        function _possibleConstructorReturn(self, call) {
+          if (
+            call &&
+            (_typeof(call) === "object" || typeof call === "function")
+          ) {
+            return call;
+          }
+          return _assertThisInitialized(self);
+        }
 
-                  this.props.clickHandler(options, e);
+        function _assertThisInitialized(self) {
+          if (self === void 0) {
+            throw new ReferenceError(
+              "this hasn't been initialised - super() hasn't been called"
+            );
+          }
+          return self;
+        }
+
+        function _isNativeReflectConstruct() {
+          if (typeof Reflect === "undefined" || !Reflect.construct)
+            return false;
+          if (Reflect.construct.sham) return false;
+          if (typeof Proxy === "function") return true;
+          try {
+            Date.prototype.toString.call(
+              Reflect.construct(Date, [], function() {})
+            );
+            return true;
+          } catch (e) {
+            return false;
+          }
+        }
+
+        function _getPrototypeOf(o) {
+          _getPrototypeOf = Object.setPrototypeOf
+            ? Object.getPrototypeOf
+            : function _getPrototypeOf(o) {
+                return o.__proto__ || Object.getPrototypeOf(o);
+              };
+          return _getPrototypeOf(o);
+        }
+
+        var PrevArrow = /*#__PURE__*/ (function(_React$PureComponent) {
+          _inherits(PrevArrow, _React$PureComponent);
+
+          var _super = _createSuper(PrevArrow);
+
+          function PrevArrow() {
+            _classCallCheck(this, PrevArrow);
+
+            return _super.apply(this, arguments);
+          }
+
+          _createClass(PrevArrow, [
+            {
+              key: "clickHandler",
+              value: function clickHandler(options, e) {
+                if (e) {
+                  e.preventDefault();
                 }
-              },
-              {
-                key: "render",
-                value: function render() {
-                  var prevClasses = {
-                    "slick-arrow": true,
-                    "slick-prev": true
-                  };
-                  var prevHandler = this.clickHandler.bind(this, {
-                    message: "previous"
-                  });
 
-                  if (
-                    !this.props.infinite &&
-                    (this.props.currentSlide === 0 ||
-                      this.props.slideCount <= this.props.slidesToShow)
-                  ) {
-                    prevClasses["slick-disabled"] = true;
-                    prevHandler = null;
-                  }
-
-                  var prevArrowProps = {
-                    key: "0",
-                    "data-role": "none",
-                    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(
-                      prevClasses
-                    ),
-                    style: {
-                      display: "block"
-                    },
-                    onClick: prevHandler
-                  };
-                  var customProps = {
-                    currentSlide: this.props.currentSlide,
-                    slideCount: this.props.slideCount
-                  };
-                  var prevArrow;
-
-                  if (this.props.prevArrow) {
-                    prevArrow = react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(
-                      this.props.prevArrow,
-                      _objectSpread({}, prevArrowProps, {}, customProps)
-                    );
-                  } else {
-                    prevArrow = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                      "button",
-                      _extends(
-                        {
-                          key: "0",
-                          type: "button"
-                        },
-                        prevArrowProps
-                      ),
-                      " ",
-                      "Previous"
-                    );
-                  }
-
-                  return prevArrow;
-                }
+                this.props.clickHandler(options, e);
               }
-            ]);
+            },
+            {
+              key: "render",
+              value: function render() {
+                var prevClasses = {
+                  "slick-arrow": true,
+                  "slick-prev": true
+                };
+                var prevHandler = this.clickHandler.bind(this, {
+                  message: "previous"
+                });
 
-            return PrevArrow;
-          })(react__WEBPACK_IMPORTED_MODULE_0___default.a.PureComponent);
-        var NextArrow =
-          /*#__PURE__*/
-          (function(_React$PureComponent2) {
-            _inherits(NextArrow, _React$PureComponent2);
+                if (
+                  !this.props.infinite &&
+                  (this.props.currentSlide === 0 ||
+                    this.props.slideCount <= this.props.slidesToShow)
+                ) {
+                  prevClasses["slick-disabled"] = true;
+                  prevHandler = null;
+                }
 
-            function NextArrow() {
-              _classCallCheck(this, NextArrow);
+                var prevArrowProps = {
+                  key: "0",
+                  "data-role": "none",
+                  className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(
+                    prevClasses
+                  ),
+                  style: {
+                    display: "block"
+                  },
+                  onClick: prevHandler
+                };
+                var customProps = {
+                  currentSlide: this.props.currentSlide,
+                  slideCount: this.props.slideCount
+                };
+                var prevArrow;
 
-              return _possibleConstructorReturn(
-                this,
-                _getPrototypeOf(NextArrow).apply(this, arguments)
-              );
+                if (this.props.prevArrow) {
+                  prevArrow = react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(
+                    this.props.prevArrow,
+                    _objectSpread({}, prevArrowProps, {}, customProps)
+                  );
+                } else {
+                  prevArrow = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                    "button",
+                    _extends(
+                      {
+                        key: "0",
+                        type: "button"
+                      },
+                      prevArrowProps
+                    ),
+                    " ",
+                    "Previous"
+                  );
+                }
+
+                return prevArrow;
+              }
             }
+          ]);
 
-            _createClass(NextArrow, [
-              {
-                key: "clickHandler",
-                value: function clickHandler(options, e) {
-                  if (e) {
-                    e.preventDefault();
-                  }
+          return PrevArrow;
+        })(react__WEBPACK_IMPORTED_MODULE_0___default.a.PureComponent);
+        var NextArrow = /*#__PURE__*/ (function(_React$PureComponent2) {
+          _inherits(NextArrow, _React$PureComponent2);
 
-                  this.props.clickHandler(options, e);
+          var _super2 = _createSuper(NextArrow);
+
+          function NextArrow() {
+            _classCallCheck(this, NextArrow);
+
+            return _super2.apply(this, arguments);
+          }
+
+          _createClass(NextArrow, [
+            {
+              key: "clickHandler",
+              value: function clickHandler(options, e) {
+                if (e) {
+                  e.preventDefault();
                 }
-              },
-              {
-                key: "render",
-                value: function render() {
-                  var nextClasses = {
-                    "slick-arrow": true,
-                    "slick-next": true
-                  };
-                  var nextHandler = this.clickHandler.bind(this, {
-                    message: "next"
-                  });
 
-                  if (
-                    !Object(
-                      _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_2__[
-                        "canGoNext"
-                      ]
-                    )(this.props)
-                  ) {
-                    nextClasses["slick-disabled"] = true;
-                    nextHandler = null;
-                  }
-
-                  var nextArrowProps = {
-                    key: "1",
-                    "data-role": "none",
-                    className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(
-                      nextClasses
-                    ),
-                    style: {
-                      display: "block"
-                    },
-                    onClick: nextHandler
-                  };
-                  var customProps = {
-                    currentSlide: this.props.currentSlide,
-                    slideCount: this.props.slideCount
-                  };
-                  var nextArrow;
-
-                  if (this.props.nextArrow) {
-                    nextArrow = react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(
-                      this.props.nextArrow,
-                      _objectSpread({}, nextArrowProps, {}, customProps)
-                    );
-                  } else {
-                    nextArrow = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-                      "button",
-                      _extends(
-                        {
-                          key: "1",
-                          type: "button"
-                        },
-                        nextArrowProps
-                      ),
-                      " ",
-                      "Next"
-                    );
-                  }
-
-                  return nextArrow;
-                }
+                this.props.clickHandler(options, e);
               }
-            ]);
+            },
+            {
+              key: "render",
+              value: function render() {
+                var nextClasses = {
+                  "slick-arrow": true,
+                  "slick-next": true
+                };
+                var nextHandler = this.clickHandler.bind(this, {
+                  message: "next"
+                });
 
-            return NextArrow;
-          })(react__WEBPACK_IMPORTED_MODULE_0___default.a.PureComponent);
+                if (
+                  !Object(
+                    _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_2__[
+                      "canGoNext"
+                    ]
+                  )(this.props)
+                ) {
+                  nextClasses["slick-disabled"] = true;
+                  nextHandler = null;
+                }
+
+                var nextArrowProps = {
+                  key: "1",
+                  "data-role": "none",
+                  className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(
+                    nextClasses
+                  ),
+                  style: {
+                    display: "block"
+                  },
+                  onClick: nextHandler
+                };
+                var customProps = {
+                  currentSlide: this.props.currentSlide,
+                  slideCount: this.props.slideCount
+                };
+                var nextArrow;
+
+                if (this.props.nextArrow) {
+                  nextArrow = react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(
+                    this.props.nextArrow,
+                    _objectSpread({}, nextArrowProps, {}, customProps)
+                  );
+                } else {
+                  nextArrow = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+                    "button",
+                    _extends(
+                      {
+                        key: "1",
+                        type: "button"
+                      },
+                      nextArrowProps
+                    ),
+                    " ",
+                    "Next"
+                  );
+                }
+
+                return nextArrow;
+              }
+            }
+          ]);
+
+          return NextArrow;
+        })(react__WEBPACK_IMPORTED_MODULE_0___default.a.PureComponent);
 
         /***/
       },
@@ -6404,7 +6503,7 @@
           adaptiveHeight: false,
           afterChange: null,
           appendDots: function appendDots(dots) {
-            return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+            return /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
               "ul",
               {
                 style: {
@@ -6423,7 +6522,7 @@
           className: "",
           cssEase: "ease",
           customPaging: function customPaging(i) {
-            return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+            return /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
               "button",
               null,
               i + 1
